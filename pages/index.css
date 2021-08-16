@@ -63,6 +63,28 @@
   width: 10px;
 }
 
+/* like-button.css */
+.like-button {
+  position: relative;
+  background-image: url("../images/icon-heart.svg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: white;
+  height: 19px;
+  width: 21px;
+  transition: opacity .25s linear;
+  cursor: pointer;
+}
+
+.like-button:hover {
+  opacity: .5;
+}
+
+.like-button_active {
+  background-image: url("../images/icon-heart_filled.svg");
+}
+
 /* Section specific styles */
 /* Section: Header */
 /* header.css */
@@ -196,24 +218,21 @@
   resize: horizontal;
 }
 
-/* like-button.css */
-.like-button {
-  position: relative;
-  background-image: url("../images/icon-heart.svg");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: white;
-  height: 19px;
-  width: 21px;
-  transition: opacity .25s linear;
-  cursor: pointer;
+/* Section: Footer */
+/* footer.css */
+.footer {
+  margin: 68px auto 60px;
+  width: calc(100% - 2 * 200px);
+  max-width: 880px;
+  display: flex;
+  justify-content: flex-start;
 }
 
-.like-button:hover {
-  opacity: .5;
-}
-
-.like-button_active {
-  background-image: url("../images/icon-heart_filled.svg");
+/* footer__copyright.css */
+.footer__copyright {
+  margin: 0;
+  color: #545454;
+  font-size: 18px;
+  line-height: 1.22;
+  font-weight: normal;
 }
