@@ -1,1 +1,44 @@
-@import url("../fonts/inter/Inter-Black.woff");
+/* Fonts & third-party styles */
+@import url("../vendor/normalize.css");
+@import url("../fonts/inter/inter.css");
+
+/* page.css */
+.page {
+  background-color: black;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+/* header.css */
+.header {
+  position: relative;
+  width: 100%;
+}
+
+/* header__container.css */
+.header__container {
+  position: relative;
+  max-width: 880px;
+  width: calc(100% - 2 * 200px);
+  margin: 0 auto;
+  padding: 45px 0 41px;
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.header__container::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  opacity: .7;
+  border-bottom: 1px solid #545454;
+}
+
+/* logo.css */
+.logo {
+  width: 173px;
+}
