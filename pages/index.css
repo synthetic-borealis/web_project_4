@@ -2,6 +2,7 @@
 @import url("../vendor/normalize.css");
 @import url("../fonts/inter/inter.css");
 
+/* Section non-specific styles */
 /* page.css */
 .page {
   background-color: black;
@@ -14,6 +15,33 @@
   width: 173px;
 }
 
+/* add-button.css */
+.add-button {
+  margin-left: auto;
+  position: relative;
+  min-width: 150px;
+  min-height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border: 2px solid white;
+  border-radius: 2px;
+  transition: opacity .25s linear;
+}
+
+.add-button:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+/* add-button__icon.css */
+.add-button__icon {
+  width: 22px;
+  margin: 0 auto;
+}
+
+/* Section specific styles */
 /* header.css */
 .header {
   position: relative;
@@ -45,13 +73,13 @@
 
 /* profile.css */
 .profile {
+  position: relative;
   max-width: 880px;
   width: calc(100% - 2 * 200px);
   margin: 40px auto 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  /* border: 1px dashed red; */
 }
 
 /* profile__avatar.css */
@@ -61,27 +89,53 @@
   margin-right: 30px;
 }
 
-/* add-button.css */
-.add-button {
-  position: relative;
-  min-width: 150px;
-  min-height: 50px;
+/* profile__info.css */
+.profile__info {
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-start;
+  box-sizing: border-box;
+}
+
+/* profile__header.css */
+.profile__header {
+  display: flex;
+  align-items: center;
+}
+
+/* profile__name.css */
+.profile__name {
+  font-size: 42px;
+  line-height: 1.14;
+  font-weight: 500;
+  margin: 0 18px 0 0;
+}
+
+/* edit-button.css */
+.edit-button {
   display: flex;
   justify-content: center;
-  align-items: center;
+  min-width: 24px;
+  min-height: 24px;
   box-sizing: border-box;
-  border: 2px solid white;
-  border-radius: 2px;
+  border: 1px solid white;
   transition: opacity .25s linear;
 }
 
-.add-button:hover {
+.edit-button:hover {
   opacity: .6;
   cursor: pointer;
 }
 
 /* add-button__icon.css */
-.add-button__icon {
-  width: 22px;
-  margin: 0 auto;
+.edit-button__icon {
+  margin: auto;
+  width: 10px;
+}
+
+/* profile__subline.css */
+.profile__subline {
+  font-size: 18px;
+  line-height: calc(22 / 18);
+  margin: 0;
 }
