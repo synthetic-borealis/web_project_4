@@ -29,16 +29,14 @@
   border-radius: 2px;
   transition: opacity .25s linear;
   cursor: pointer;
+  background-image: url("../images/icon-cross.svg");
+  background-size: 22px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .add-button:hover {
   opacity: .6;
-}
-
-/* add-button__icon.css */
-.add-button__icon {
-  width: 22px;
-  margin: 0 auto;
 }
 
 /* edit-button.css */
@@ -51,16 +49,14 @@
   border: 1px solid white;
   transition: opacity .25s linear;
   cursor: pointer;
+  background-image: url("../images/icon-edit.svg");
+  background-size: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .edit-button:hover {
   opacity: .6;
-}
-
-/* add-button__icon.css */
-.edit-button__icon {
-  margin: auto;
-  width: 10px;
 }
 
 /* like-button.css */
