@@ -9,6 +9,11 @@
   font-family: 'Inter', sans-serif;
 }
 
+/* logo.css */
+.logo {
+  width: 173px;
+}
+
 /* header.css */
 .header {
   position: relative;
@@ -38,7 +43,45 @@
   border-bottom: 1px solid #545454;
 }
 
-/* logo.css */
-.logo {
-  width: 173px;
+/* profile.css */
+.profile {
+  max-width: 880px;
+  width: calc(100% - 2 * 200px);
+  margin: 40px auto 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px dashed red; */
+}
+
+/* profile__avatar.css */
+.profile__avatar {
+  width: 120px;
+  border-radius: 100%;
+  margin-right: 30px;
+}
+
+/* add-button.css */
+.add-button {
+  position: relative;
+  min-width: 150px;
+  min-height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border: 2px solid white;
+  border-radius: 2px;
+  transition: opacity .25s linear;
+}
+
+.add-button:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+/* add-button__icon.css */
+.add-button__icon {
+  width: 22px;
+  margin: 0 auto;
 }
