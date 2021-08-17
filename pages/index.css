@@ -39,26 +39,6 @@
   opacity: .6;
 }
 
-/* edit-button.css */
-.edit-button {
-  display: flex;
-  justify-content: center;
-  min-width: 24px;
-  min-height: 24px;
-  box-sizing: border-box;
-  border: 1px solid white;
-  transition: opacity .25s linear;
-  cursor: pointer;
-  background-image: url("../images/icon-edit.svg");
-  background-size: 10px;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.edit-button:hover {
-  opacity: .6;
-}
-
 /* like-button.css */
 .like-button {
   position: relative;
@@ -137,6 +117,26 @@
   flex-direction: column;
   justify-self: flex-start;
   box-sizing: border-box;
+}
+
+/* profile__edit-button.css */
+.profile__edit-button {
+  display: flex;
+  justify-content: center;
+  min-width: 24px;
+  min-height: 24px;
+  box-sizing: border-box;
+  border: 1px solid white;
+  transition: opacity .25s linear;
+  cursor: pointer;
+  background-image: url("../images/icon-edit.svg");
+  background-size: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.profile__edit-button:hover {
+  opacity: .6;
 }
 
 /* profile__header.css */
