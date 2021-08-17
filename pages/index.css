@@ -15,7 +15,7 @@
   width: 173px;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 430px) {
   .logo {
     width: calc(126 / 266 * 100%);
     width: 126px;
@@ -86,7 +86,7 @@
   width: 100%;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 430px) {
   .header::after {
     position: absolute;
     width: 100%;
@@ -110,7 +110,7 @@
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 430px) {
   .header__container {
     width: calc(266 / 320 * 100%);
     padding: 28px 0 32px;
@@ -128,7 +128,7 @@
   border-bottom: 1px solid #545454;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 430px) {
   .header__container::after {
     display: none;
   }
@@ -172,7 +172,6 @@
 .profile__info {
   display: flex;
   flex-direction: column;
-  justify-self: flex-start;
   box-sizing: border-box;
 }
 
@@ -186,6 +185,8 @@
 .profile__header {
   display: flex;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 @media screen and (max-width: 1044px) {
@@ -197,7 +198,7 @@
 /* profile__name.css */
 .profile__name {
   font-size: 42px;
-  line-height: 1.14;
+  line-height: calc(48 / 42);
   font-weight: 500;
   margin: 0 18px 0 0;
 }
@@ -213,6 +214,7 @@
 
 /* profile__edit-button.css */
 .profile__edit-button {
+  position: relative;
   display: flex;
   justify-content: center;
   min-width: 24px;
@@ -244,6 +246,7 @@
   font-size: 18px;
   line-height: calc(22 / 18);
   margin: 0;
+  padding: 0;
 }
 
 @media screen and (max-width: 1044px) {
@@ -267,9 +270,10 @@
   gap: 20px 17px;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 430px) {
   .places {
     width: calc(282 / 320 * 100%);
+    max-width: 282px;
     margin-top: 36px;
     grid-template-columns: 1fr;
     gap: 20px;
