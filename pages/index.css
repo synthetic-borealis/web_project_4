@@ -50,6 +50,12 @@
   }
 }
 
+@media screen and (max-width: 430px) {
+  .add-button {
+    max-width: 282px;
+  }
+}
+
 .add-button:hover {
   opacity: .6;
 }
