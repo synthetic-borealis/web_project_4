@@ -15,6 +15,13 @@
   width: 173px;
 }
 
+@media screen and (max-width: 425px) {
+  .logo {
+    width: calc(126 / 266 * 100%);
+    width: 126px;
+  }
+}
+
 /* add-button.css */
 .add-button {
   margin-left: auto;
@@ -69,16 +76,36 @@
   width: 100%;
 }
 
+@media screen and (max-width: 425px) {
+  .header::after {
+    position: absolute;
+    width: 100%;
+    /* height: 100%; */
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid #545454;
+    opacity: .7;
+    content: "";
+  }
+}
+
 /* header__container.css */
 .header__container {
   position: relative;
   max-width: 880px;
-  width: calc(100% - 2 * 200px);
+  width: calc(880 / 1280 * 100%);
   margin: 0 auto;
   padding: 45px 0 41px;
   display: flex;
   justify-content: flex-start;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 425px) {
+  .header__container {
+    width: calc(266 / 320 * 100%);
+    padding: 28px 0 32px;
+  }
 }
 
 .header__container::after {
@@ -92,12 +119,18 @@
   border-bottom: 1px solid #545454;
 }
 
+@media screen and (max-width: 425px) {
+  .header__container::after {
+    display: none;
+  }
+}
+
 /* Section: Profile */
 /* profile.css */
 .profile {
   position: relative;
   max-width: 880px;
-  width: calc(100% - 2 * 200px);
+  width: calc(880 / 1280 * 100%);
   margin: 40px auto 50px;
   display: flex;
   justify-content: flex-start;
@@ -164,7 +197,7 @@
 /* places.css */
 .places {
   margin: 50px auto 0;
-  width: calc(100% - 2 * 200px);
+  width: calc(880 / 1280 * 100%);
   max-width: 880px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -216,7 +249,7 @@
 /* footer.css */
 .footer {
   margin: 68px auto 60px;
-  width: calc(100% - 2 * 200px);
+  width: calc(880 / 1280 * 100%);
   max-width: 880px;
   display: flex;
   justify-content: flex-start;
