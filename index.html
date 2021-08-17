@@ -23,9 +23,7 @@
           <h2 class="profile__name">Jacques Cousteau</h2>
           <div class="profile__edit-button"></div>
         </div>
-        <p class="profile__job">
-          Explorer
-        </p>
+        <p class="profile__about">Explorer</p>
       </div>
       <div class="add-button"></div>
     </section>
@@ -79,17 +77,19 @@
       © 2021 Around The U.S.
     </p>
   </footer>
-  <!-- <section class="edit-container">
-    <div class="edit-form">
-      <div class="edit-form__container">
+  <section class="edit-section">
+    <div class="edit-form-modal">
+      <form class="edit-form" action="#">
         <h2 class="edit-form__title">Edit profile</h2>
-        <input type="text" placeholder="Name" class="edit-form__text-input edit-form__text-input_type_name">
-        <input type="text" placeholder="Job" class="edit-form__text-input edit-form__text-input_type_job">
-        <button class="edit-form__submit-btn">Save</button>
-      </div>
-      <div class="edit-form__close-btn"></div>
+        <input type="text" placeholder="Name" class="edit-form__text-input edit-form__text-input_type_name" required>
+        <input type="text" placeholder="About Me" class="edit-form__text-input edit-form__text-input_type_about"
+          required>
+        <input type="submit" value="Save" class="edit-form__submit-btn">
+      </form>
+      <div class="edit-form-modal__close-btn"></div>
     </div>
-  </section> -->
+  </section>
+  <script src="./script.js"></script>
 </body>
 
 </html>
