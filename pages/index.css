@@ -45,13 +45,15 @@
 @media screen and (max-width: 1044px) {
   .add-button {
     margin: 0;
-    width: 100%;
+    /* width: 100%; */
+    width: calc(880 / 1280 * 100vw);
     background-size: 16px;
   }
 }
 
 @media screen and (max-width: 430px) {
   .add-button {
+    width: 100%;
     max-width: 282px;
   }
 }
