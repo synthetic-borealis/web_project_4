@@ -10,15 +10,15 @@ const btnCloseEditForm = document.querySelector(".edit-form-modal__close-btn");
 
 // Labels, headings, etc.
 const profileName = document.querySelector(".profile__name");
-const profileAbout = document.querySelector(".profile__about");
+const profileJob = document.querySelector(".profile__job");
 
 // Input fields
 const inputName = document.querySelector(".edit-form__text-input_type_name");
-const inputAbout = document.querySelector(".edit-form__text-input_type_about");
+const inputJob = document.querySelector(".edit-form__text-input_type_job");
 
 function updateFormContent() {
   inputName.value = profileName.textContent;
-  inputAbout.value = profileAbout.textContent;
+  inputJob.value = profileJob.textContent;
 }
 
 function toggleEditFormVisibility(evt) {
@@ -36,7 +36,7 @@ function saveProfile(evt) {
   evt.preventDefault();
 
   profileName.textContent = inputName.value;
-  profileAbout.textContent = inputAbout.value;
+  profileJob.textContent = inputJob.value;
 
   editContainer.classList.remove("edit-section_opened");
 }
