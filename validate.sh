@@ -25,4 +25,4 @@
 
 # Modify VALIDATION_INPUT according to your needs
 export VALIDATION_INPUT="index.html pages blocks"
-vnu --also-check-css --format json --stdout $VALIDATION_INPUT > validation-log.json
+vnu --also-check-css --skip-non-html --format json --stdout $VALIDATION_INPUT > validation-log.json
