@@ -1,0 +1,8 @@
+.place__container {
+  margin: 25px 18px 30px 21px;
+  max-width: 246px;
+  width: calc(100% - 21px - 18px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

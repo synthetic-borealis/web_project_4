@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Around the U.S.</title>
+</head>
+
+<body class="page">
+  <header class="header">
+    <div class="header__container">
+      <img class="logo" src="./images/logo.svg" alt="Around the U.S.">
+    </div>
+  </header>
+  <main>
+    <section class="profile">
+      <img class="profile__avatar" src="./images/profile-cousteau.jpg" alt="Jacques Cousteau">
+      <div class="profile__info">
+        <div class="profile__header">
+          <h2 class="profile__name">Jacques Cousteau</h2>
+          <button class="profile__edit-button"></button>
+        </div>
+        <p class="profile__job">Explorer</p>
+      </div>
+      <button class="add-button" aria-label="Add"></button>
+    </section>
+
+    <section class="places">
+      <div class="place">
+        <img src="./images/place-yosemite.jpg" alt="Yosemite" class="place__image">
+        <div class="place__container">
+          <h2 class="place__caption">Yosemite Valley</h2>
+          <button class="like-button"></button>
+        </div>
+      </div>
+      <div class="place">
+        <img src="./images/places-lake.jpg" alt="Lake Louise" class="place__image">
+        <div class="place__container">
+          <h2 class="place__caption">Lake Louise</h2>
+          <button class="like-button"></button>
+        </div>
+      </div>
+      <div class="place">
+        <img src="./images/place-smoky.jpg" alt="Bald Mountains" class="place__image">
+        <div class="place__container">
+          <h2 class="place__caption">Bald Mountains</h2>
+          <button class="like-button"></button>
+        </div>
+      </div>
+      <div class="place">
+        <img src="./images/place-latemar.jpg" alt="Latemar" class="place__image">
+        <div class="place__container">
+          <h2 class="place__caption">Latemar</h2>
+          <button class="like-button"></button>
+        </div>
+      </div>
+      <div class="place">
+        <img src="./images/place-vanoise.jpg" alt="Vanoise National Park" class="place__image">
+        <div class="place__container">
+          <h2 class="place__caption">Vanoise National Park</h2>
+          <button class="like-button"></button>
+        </div>
+      </div>
+      <div class="place">
+        <img src="./images/place-lago.jpg" alt="Lago di Braies" class="place__image">
+        <div class="place__container">
+          <h2 class="place__caption">Lago di Braies</h2>
+          <button class="like-button"></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__copyright">© 2021 Around The U.S.</p>
+  </footer>
+
+  <section class="edit-section">
+    <div class="edit-form-modal">
+      <form class="edit-form" action="#">
+        <h2 class="edit-form__title">Edit profile</h2>
+        <input type="text" placeholder="Name" class="edit-form__text-input edit-form__text-input_type_name" required>
+        <input type="text" placeholder="Job" class="edit-form__text-input edit-form__text-input_type_job"
+          required>
+        <input type="submit" value="Save" class="edit-form__submit-btn">
+      </form>
+      <button class="edit-form-modal__close-btn" aria-label="Close"></button>
+    </div>
+  </section>
+  <script src="./pages/index.js"></script>
+</body>
+
+</html>

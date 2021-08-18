@@ -1,0 +1,11 @@
+.edit-form {
+  margin: 34px 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 800px) {
+  .edit-form {
+    margin: 25px 22px;
+  }
+}
