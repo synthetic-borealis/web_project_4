@@ -7,7 +7,6 @@ let editForm = document.querySelector(".edit-form");
 // Buttons
 let btnEdit = document.querySelector(".profile__edit-button");
 let btnCloseEditForm = document.querySelector(".edit-form-modal__close-btn");
-let btnLikeButtons = document.querySelectorAll(".like-button");
 
 // Labels, headings, etc.
 let profileName = document.querySelector(".profile__name");
@@ -30,8 +29,6 @@ function toggleEditFormVisibility(evt) {
     editContainer.classList.remove("edit-section_opened");
   }
 }
-btnEdit.addEventListener("click", toggleEditFormVisibility);
-btnCloseEditForm.addEventListener("click", toggleEditFormVisibility);
 
 function saveProfile(evt) {
   evt.preventDefault();
@@ -41,11 +38,7 @@ function saveProfile(evt) {
 
   editContainer.classList.remove("edit-section_opened");
 }
-editForm.addEventListener("submit", saveProfile);
 
-function toggleLikeButton(evt) {
-  evt.target.classList.toggle("like-button_active");
-}
-for (let i = 0; i < btnLikeButtons.length; i++) {
-  btnLikeButtons[i].addEventListener("click", toggleLikeButton);
-}
+btnEdit.addEventListener("click", toggleEditFormVisibility);
+btnCloseEditForm.addEventListener("click", toggleEditFormVisibility);
+editForm.addEventListener("submit", saveProfile);
