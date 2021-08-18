@@ -15,7 +15,7 @@ The website was created in HTML5, CSS & JavaScript.
   <img src="./images/screenshots/Screenshot_iPhonePlus.png" alt="Mobile screenshots" width="80%">
   <figcaption>Fig. 1: The website running inside Chrome's device emulator.</figcaption>
 </figure>
-<br>
+<p><br></p>
 <figure>
   <img src="./images/screenshots/Screenshot_PC.png" alt="Laptop screenshot" width="80%">
   <figcaption>Fig. 2: The website running normally inside Chrome.</figcaption>
