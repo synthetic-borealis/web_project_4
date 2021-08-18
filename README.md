@@ -7,6 +7,15 @@ A one page website for travellers. The website is responsive and should display 
 
 The website was created in HTML5, CSS & JavaScript.
 
+## Possible Improvements
+- Refactoring: All currently used edit form events can potentailly be handled by a single function.
+
 ## Showcase
-![Mobile](./images/screenshots/Screenshot_iPhonePlus.png)
-![PC](./images/screenshots/Screenshot_PC.png)
+<figure>
+  <img src="./images/screenshots/Screenshot_iPhonePlus.png" alt="Mobile screenshots" width="80%">
+  <figcaption>Fig. 1: The website running inside Chrome's device emulator.</figcaption>
+</figure>
+<figure>
+  <img src="./images/screenshots/Screenshot_PC.png" alt="Laptop screenshot" width="80%">
+  <figcaption>Fig. 2: The website running normally inside Chrome.</figcaption>
+</figure>
