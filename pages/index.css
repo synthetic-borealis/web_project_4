@@ -36,6 +36,7 @@
 
 /* Section: Edit Form */
 @import url("../blocks/edit-section/edit-section.css");
+@import url("../blocks/edit-section/_opened/edit-section_opened.css");
 @import url("../blocks/edit-form-modal/edit-form-modal.css");
 @import url("../blocks/edit-form/edit-form.css");
 @import url("../blocks/edit-form/__title/edit-form__title.css");
