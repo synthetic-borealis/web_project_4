@@ -1,13 +1,13 @@
 // Containers
-const editContainer = document.querySelector(".modal-section_type_edit");
 const placesSection = document.querySelector(".places");
+const editContainer = document.querySelector(".modal-section_type_edit");
 
 // Forms
 const editForm = document.querySelector(".edit-form");
 
 // Buttons
 const btnEditOpen = document.querySelector(".profile__edit-button");
-const btnEditClose = document.querySelector(".edit-form-modal__close-btn");
+const btnEditClose = editContainer.querySelector(".close-button");
 
 // Labels, headings, etc.
 const profileName = document.querySelector(".profile__name");

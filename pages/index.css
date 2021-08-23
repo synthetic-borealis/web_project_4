@@ -8,6 +8,7 @@
 @import url("../blocks/add-button/add-button.css");
 @import url("../blocks/modal-section/modal-section.css");
 @import url("../blocks/modal-section/_opened/modal-section_opened.css");
+@import url("../blocks/form-modal/form-modal.css");
 @import url("../blocks/close-button/close-button.css");
 
 /* Section specific styles */
@@ -39,7 +40,6 @@
 @import url("../blocks/footer/__copyright/footer__copyright.css");
 
 /* Section: Edit Form */
-@import url("../blocks/edit-form-modal/edit-form-modal.css");
 @import url("../blocks/edit-form/edit-form.css");
 @import url("../blocks/edit-form/__title/edit-form__title.css");
 @import url("../blocks/edit-form/__text-input/edit-form__text-input.css");
