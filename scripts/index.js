@@ -2,6 +2,7 @@
 const placesSection = document.querySelector(".places");
 const editContainer = document.querySelector(".modal-section_type_edit");
 const addContainer = document.querySelector(".modal-section_type_add");
+const imageModalContainer = document.querySelector(".modal-section_type_image");
 
 // Forms
 const editForm = document.querySelector(".form_type_edit");
@@ -9,9 +10,7 @@ const addForm = document.querySelector(".form_type_add");
 
 // Buttons
 const btnEdit = document.querySelector(".profile__edit-button");
-const btnEditClose = editContainer.querySelector(".close-button");
 const btnAdd = document.querySelector(".add-button");
-const btnAddClose = addContainer.querySelector(".close-button");
 
 // Labels, headings, etc.
 const profileName = document.querySelector(".profile__name");
@@ -64,15 +63,16 @@ function addPlaceCard(name, link) {
   placeImage.ariaLabel = name;
   placeElement.querySelector(".place__caption").textContent = name;
 
-  const placeModal = placeElement.querySelector(".place__image-modal");
-  const placeModalContainer = placeElement.querySelector(".modal-section");
-  const modalImage = placeModal.querySelector(".place__modal-image");
-  modalImage.src = link;
-  modalImage.alt = name;
-  placeModal.querySelector(".place__modal-image-caption").textContent = name;
-  const btnModalClose = placeModal.querySelector(".close-button");
-  placeImage.addEventListener("click", () => placeModalContainer.classList.add("modal-section_opened"));
-  btnModalClose.addEventListener("click", () => placeModalContainer.classList.remove("modal-section_opened"));
+  placeImage.addEventListener("click", () => {
+    const modalImage = imageModalContainer.querySelector(".image-modal__image");
+    const modalCaption = imageModalContainer.querySelector(".image-modal__caption");
+
+    modalImage.src = link;
+    modalImage.alt = name;
+    modalCaption.textContent = name;
+
+    imageModalContainer.classList.add("modal-section_opened");
+  });
 
   const btnLike = placeElement.querySelector(".place__like-button");
   btnLike.addEventListener("click", (evt) => evt.target.classList.toggle("place__like-button_active"));
@@ -88,7 +88,6 @@ btnEdit.addEventListener("click", () => {
   updateEditFormContent();
   editContainer.classList.add("modal-section_opened");
 });
-btnEditClose.addEventListener("click", () => editContainer.classList.remove("modal-section_opened"));
 editForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
@@ -100,11 +99,17 @@ editForm.addEventListener("submit", (evt) => {
 
 // Add Form
 btnAdd.addEventListener("click", () => addContainer.classList.add("modal-section_opened"));
-btnAddClose.addEventListener("click", () => addContainer.classList.remove("modal-section_opened"));
 addForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
   addPlaceCard(inputPlaceTitle.value, inputPlaceLink.value);
 
   addContainer.classList.remove("modal-section_opened");
+});
+
+// All Modals
+document.querySelectorAll(".close-button").forEach((button) => {
+  button.addEventListener("click", (evt) => {
+    evt.target.closest(".modal-section").classList.remove("modal-section_opened");
+  });
 });

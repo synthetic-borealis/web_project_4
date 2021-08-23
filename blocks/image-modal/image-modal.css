@@ -1,11 +1,11 @@
-.place__image-modal {
+.image-modal {
   display: flex;
   position: relative;
   /* width: max-content; */
 }
 
 @media screen and (max-width: 480px) {
-  .place__image-modal {
+  .image-modal {
     height: unset;
     width: calc(240 / 320 * 100%);
   }
