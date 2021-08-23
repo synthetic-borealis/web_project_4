@@ -36,17 +36,31 @@
     <p class="footer__copyright">© 2021 Around The U.S.</p>
   </footer>
 
-  <section class="edit-section">
-    <div class="edit-form-modal">
-      <form class="edit-form" action="#" name="editForm">
-        <h2 class="edit-form__title">Edit profile</h2>
-        <input type="text" placeholder="Name" class="edit-form__text-input edit-form__text-input_type_name" name="name"
+  <section class="modal-section modal-section_type_edit">
+    <div class="form-modal form-modal_type_edit">
+      <form class="form form_type_edit" action="#" name="editForm">
+        <h2 class="form__title">Edit profile</h2>
+        <input type="text" placeholder="Name" class="form__text-input form__text-input_type_profile-name" name="name"
           required>
-        <input type="text" placeholder="Job" class="edit-form__text-input edit-form__text-input_type_job" name="job"
+        <input type="text" placeholder="Job" class="form__text-input form__text-input_type_profile-job" name="job"
           required>
-        <input type="submit" value="Save" class="edit-form__submit-btn">
+        <input type="submit" value="Save" class="form__submit-btn">
       </form>
-      <button class="edit-form-modal__close-btn" type="button" aria-label="Close"></button>
+      <button class="close-button" type="button" aria-label="Close"></button>
+    </div>
+  </section>
+
+  <section class="modal-section modal-section_type_add">
+    <div class="form-modal form-modal_type_add">
+      <form class="form form_type_add" action="#" name="addForm">
+        <h2 class="form__title">New place</h2>
+        <input type="text" placeholder="Title" class="form__text-input form__text-input_type_place-title" name="title"
+          required>
+        <input type="text" placeholder="Image Link" class="form__text-input form__text-input_type_place-link"
+          name="link" required>
+        <input type="submit" value="Create" class="form__submit-btn">
+      </form>
+      <button class="close-button" type="button" aria-label="Close"></button>
     </div>
   </section>
 
