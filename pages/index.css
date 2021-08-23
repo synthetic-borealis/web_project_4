@@ -6,8 +6,15 @@
 @import url("../blocks/page/page.css");
 @import url("../blocks/logo/logo.css");
 @import url("../blocks/add-button/add-button.css");
-@import url("../blocks/like-button/like-button.css");
-@import url("../blocks/like-button/_active/like-button_active.css");
+@import url("../blocks/modal-section/modal-section.css");
+@import url("../blocks/modal-section/_opened/modal-section_opened.css");
+@import url("../blocks/form-modal/form-modal.css");
+@import url("../blocks/form/form.css");
+@import url("../blocks/form/__title/form__title.css");
+@import url("../blocks/form/__text-input/form__text-input.css");
+@import url("../blocks/form/__submit-btn/form__submit-btn.css");
+@import url("../blocks/close-button/close-button.css");
+@import url("../blocks/close-button/_type/close-button_type_image-modal.css");
 
 /* Section specific styles */
 /* Section: Header */
@@ -29,17 +36,16 @@
 @import url("../blocks/place/__image/place__image.css");
 @import url("../blocks/place/__container/place__container.css");
 @import url("../blocks/place/__caption/place__caption.css");
+@import url("../blocks/place/__like-button/place__like-button.css");
+@import url("../blocks/place/__like-button/_active/place__like-button_active.css");
+@import url("../blocks/place/__delete-button/place__delete-button.css");
+@import url("../blocks/image-modal/image-modal.css");
+@import url("../blocks/image-modal/__image/image-modal__image.css");
+@import url("../blocks/image-modal/__caption/image-modal__caption.css");
 
 /* Section: Footer */
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__copyright/footer__copyright.css");
 
 /* Section: Edit Form */
-@import url("../blocks/edit-section/edit-section.css");
-@import url("../blocks/edit-section/_opened/edit-section_opened.css");
-@import url("../blocks/edit-form-modal/edit-form-modal.css");
-@import url("../blocks/edit-form/edit-form.css");
-@import url("../blocks/edit-form/__title/edit-form__title.css");
-@import url("../blocks/edit-form/__text-input/edit-form__text-input.css");
-@import url("../blocks/edit-form/__submit-btn/edit-form__submit-btn.css");
-@import url("../blocks/edit-form-modal/__close-btn/edit-form-modal__close-btn.css");
+/* Placeholder */

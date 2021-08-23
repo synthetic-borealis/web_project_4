@@ -1,8 +1,13 @@
 .place__image {
-  max-width: 100%;
+  position: relative;
   width: 100%;
+  padding-bottom: 100%;
   display: block;
-  object-fit: cover;
-  margin: 0;
-  padding: 0;
+  border: 0;
+  /* background-color is present for debugging purposes only */
+  background-color: orange;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
 }
