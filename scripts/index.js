@@ -1,21 +1,21 @@
 // Containers
-let editContainer = document.querySelector(".edit-section");
+const editContainer = document.querySelector(".edit-section");
 const placesSection = document.querySelector(".places");
 
 // Forms
-let editForm = document.querySelector(".edit-form");
+const editForm = document.querySelector(".edit-form");
 
 // Buttons
-let btnEdit = document.querySelector(".profile__edit-button");
-let btnCloseEditForm = document.querySelector(".edit-form-modal__close-btn");
+const btnEdit = document.querySelector(".profile__edit-button");
+const btnCloseEditForm = document.querySelector(".edit-form-modal__close-btn");
 
 // Labels, headings, etc.
-let profileName = document.querySelector(".profile__name");
-let profileJob = document.querySelector(".profile__job");
+const profileName = document.querySelector(".profile__name");
+const profileJob = document.querySelector(".profile__job");
 
 // Input fields
-let inputName = document.querySelector(".edit-form__text-input_type_name");
-let inputJob = document.querySelector(".edit-form__text-input_type_job");
+const inputName = document.querySelector(".edit-form__text-input_type_name");
+const inputJob = document.querySelector(".edit-form__text-input_type_job");
 
 function updateFormContent() {
   inputName.value = profileName.textContent;
