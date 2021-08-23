@@ -23,27 +23,9 @@ const inputProfileJob = document.querySelector(".form__text-input_type_profile-j
 const inputPlaceTitle = document.querySelector(".form__text-input_type_place-title");
 const inputPlaceLink = document.querySelector(".form__text-input_type_place-link");
 
-function updateFormContent() {
+function updateEditFormContent() {
   inputProfileName.value = profileName.textContent;
   inputProfileJob.value = profileJob.textContent;
-}
-
-function toggleEditFormVisibility(evt) {
-  if (evt.target === btnEdit) {
-    updateFormContent();
-    editContainer.classList.add("modal-section_opened");
-  } else if ((evt.target === btnEditClose)) {
-    editContainer.classList.remove("modal-section_opened");
-  }
-}
-
-function saveProfile(evt) {
-  evt.preventDefault();
-
-  profileName.textContent = inputProfileName.value;
-  profileJob.textContent = inputProfileJob.value;
-
-  editContainer.classList.remove("modal-section_opened");
 }
 
 const initialCards = [
@@ -92,9 +74,19 @@ function addPlaceCard(name, link) {
 initialCards.forEach((card) => addPlaceCard(card.name, card.link));
 
 // Edit Form
-btnEdit.addEventListener("click", toggleEditFormVisibility);
-btnEditClose.addEventListener("click", toggleEditFormVisibility);
-editForm.addEventListener("submit", saveProfile);
+btnEdit.addEventListener("click", () => {
+  updateEditFormContent();
+  editContainer.classList.add("modal-section_opened");
+});
+btnEditClose.addEventListener("click", () => editContainer.classList.remove("modal-section_opened"));
+editForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+
+  profileName.textContent = inputProfileName.value;
+  profileJob.textContent = inputProfileJob.value;
+
+  editContainer.classList.remove("modal-section_opened");
+});
 
 // Add Form
 btnAdd.addEventListener("click", () => addContainer.classList.add("modal-section_opened"));
