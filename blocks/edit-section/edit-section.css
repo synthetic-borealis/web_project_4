@@ -19,7 +19,3 @@
   content: "";
   opacity: .5;
 }
-
-.edit-section_opened {
-  display: flex;
-}
