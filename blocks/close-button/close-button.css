@@ -7,10 +7,13 @@
   background-image: url("../../images/icon-close.svg");
   background-position: center;
   background-repeat: no-repeat;
-  cursor: pointer;
   transition: opacity .25s linear;
   border: none;
   background-color: transparent;
+}
+
+.modal-section_opened .close-button {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 800px) {
