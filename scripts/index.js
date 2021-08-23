@@ -1,5 +1,5 @@
 // Containers
-const editContainer = document.querySelector(".edit-section");
+const editContainer = document.querySelector(".modal-section_type_edit");
 const placesSection = document.querySelector(".places");
 
 // Forms
@@ -25,9 +25,9 @@ function updateFormContent() {
 function toggleEditFormVisibility(evt) {
   if (evt.target === btnEdit) {
     updateFormContent();
-    editContainer.classList.add("edit-section_opened");
+    editContainer.classList.add("modal-section_opened");
   } else if ((evt.target === btnCloseEditForm)) {
-    editContainer.classList.remove("edit-section_opened");
+    editContainer.classList.remove("modal-section_opened");
   }
 }
 
