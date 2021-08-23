@@ -6,8 +6,8 @@ const placesSection = document.querySelector(".places");
 const editForm = document.querySelector(".edit-form");
 
 // Buttons
-const btnEdit = document.querySelector(".profile__edit-button");
-const btnCloseEditForm = document.querySelector(".edit-form-modal__close-btn");
+const btnEditOpen = document.querySelector(".profile__edit-button");
+const btnEditClose = document.querySelector(".edit-form-modal__close-btn");
 
 // Labels, headings, etc.
 const profileName = document.querySelector(".profile__name");
@@ -23,10 +23,10 @@ function updateFormContent() {
 }
 
 function toggleEditFormVisibility(evt) {
-  if (evt.target === btnEdit) {
+  if (evt.target === btnEditOpen) {
     updateFormContent();
     editContainer.classList.add("modal-section_opened");
-  } else if ((evt.target === btnCloseEditForm)) {
+  } else if ((evt.target === btnEditClose)) {
     editContainer.classList.remove("modal-section_opened");
   }
 }
@@ -85,6 +85,6 @@ function addPlaceCard(name, link) {
 }
 initialCards.forEach((card) => addPlaceCard(card.name, card.link));
 
-btnEdit.addEventListener("click", toggleEditFormVisibility);
-btnCloseEditForm.addEventListener("click", toggleEditFormVisibility);
+btnEditOpen.addEventListener("click", toggleEditFormVisibility);
+btnEditClose.addEventListener("click", toggleEditFormVisibility);
 editForm.addEventListener("submit", saveProfile);
