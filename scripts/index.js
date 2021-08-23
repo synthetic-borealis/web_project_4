@@ -62,8 +62,18 @@ function addPlaceCard(name, link) {
   const placeImage = placeElement.querySelector(".place__image");
   placeImage.style.backgroundImage = `url("${link}")`;
   placeImage.ariaLabel = name;
-
   placeElement.querySelector(".place__caption").textContent = name;
+
+  const placeModal = placeElement.querySelector(".place__image-modal");
+  const placeModalContainer = placeElement.querySelector(".modal-section");
+  const modalImage = placeModal.querySelector(".place__modal-image");
+  modalImage.src = link;
+  modalImage.alt = name;
+  placeModal.querySelector(".place__modal-image-caption").textContent = name;
+  const btnModalClose = placeModal.querySelector(".close-button");
+  placeImage.addEventListener("click", () => placeModalContainer.classList.add("modal-section_opened"));
+  btnModalClose.addEventListener("click", () => placeModalContainer.classList.remove("modal-section_opened"));
+
   const btnLike = placeElement.querySelector(".place__like-button");
   btnLike.addEventListener("click", (evt) => evt.target.classList.toggle("place__like-button_active"));
   const btnDelete = placeElement.querySelector(".place__delete-button");
@@ -71,7 +81,7 @@ function addPlaceCard(name, link) {
 
   placesSection.append(placeElement);
 }
-// initialCards.forEach((card) => addPlaceCard(card.name, card.link));
+initialCards.forEach((card) => addPlaceCard(card.name, card.link));
 
 // Edit Form
 btnEdit.addEventListener("click", () => {
