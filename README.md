@@ -8,7 +8,7 @@ A one page website for travellers. The website is responsive and should display 
 The website was created in HTML5, CSS & JavaScript.
 
 ## Possible Improvements
-- Validate image links when new place cards are created.
+- Optional: Ensure links point to valid image files when creating image cards.
 
 ## Showcase
 <figure>

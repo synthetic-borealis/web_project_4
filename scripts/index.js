@@ -27,34 +27,34 @@ function updateEditFormContent() {
   inputProfileJob.value = profileJob.textContent;
 }
 
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg"
-  }
-];
+function updateProfileValues() {
+  profileName.textContent = inputProfileName.value;
+  profileJob.textContent = inputProfileJob.value;
+}
 
-function addPlaceCard(name, link) {
+function updateImageModal(name, link) {
+  const imageModalImage = imageModalContainer.querySelector(".image-modal__image");
+  const imageModalCaption = imageModalContainer.querySelector(".image-modal__caption");
+
+  imageModalImage.src = link;
+  imageModalImage.alt = name;
+  imageModalCaption.textContent = name;
+}
+
+function openModal(modal) {
+  modal.classList.add("modal-section_opened");
+}
+
+function closeModal(modal) {
+  modal.classList.remove("modal-section_opened");
+}
+
+function openImageModal(name, link) {
+  updateImageModal(name, link);
+  openModal(imageModalContainer);
+}
+
+function createPlaceCard(name, link) {
   const placeTemplate = document.querySelector("#place-template").content;
   const placeElement = placeTemplate.querySelector(".place").cloneNode(true);
 
@@ -63,25 +63,22 @@ function addPlaceCard(name, link) {
   placeImage.ariaLabel = name;
   placeElement.querySelector(".place__caption").textContent = name;
 
-  placeImage.addEventListener("click", () => {
-    const modalImage = imageModalContainer.querySelector(".image-modal__image");
-    const modalCaption = imageModalContainer.querySelector(".image-modal__caption");
-
-    modalImage.src = link;
-    modalImage.alt = name;
-    modalCaption.textContent = name;
-
-    imageModalContainer.classList.add("modal-section_opened");
-  });
+  placeImage.addEventListener("click", () => openImageModal(name, link));
 
   const btnLike = placeElement.querySelector(".place__like-button");
   btnLike.addEventListener("click", (evt) => evt.target.classList.toggle("place__like-button_active"));
   const btnDelete = placeElement.querySelector(".place__delete-button");
   btnDelete.addEventListener("click", () => placeElement.closest(".place").remove());
 
-  placesSection.append(placeElement);
+  return placeElement;
 }
-initialCards.forEach((card) => addPlaceCard(card.name, card.link));
+
+function renderPlaceCard(name, link) {
+  const placeCard = createPlaceCard(name, link);
+  placesSection.prepend(placeCard);
+}
+
+initialCards.reverse().forEach((card) => renderPlaceCard(card.name, card.link));
 
 // Edit Form
 btnEdit.addEventListener("click", () => {
@@ -90,11 +87,8 @@ btnEdit.addEventListener("click", () => {
 });
 editForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
-
-  profileName.textContent = inputProfileName.value;
-  profileJob.textContent = inputProfileJob.value;
-
-  editContainer.classList.remove("modal-section_opened");
+  updateProfileValues();
+  closeModal(editContainer);
 });
 
 // Add Form
@@ -102,14 +96,12 @@ btnAdd.addEventListener("click", () => addContainer.classList.add("modal-section
 addForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
-  addPlaceCard(inputPlaceTitle.value, inputPlaceLink.value);
+  renderPlaceCard(inputPlaceTitle.value, inputPlaceLink.value);
 
-  addContainer.classList.remove("modal-section_opened");
+  closeModal(addContainer);
 });
 
 // All Modals
 document.querySelectorAll(".close-button").forEach((button) => {
-  button.addEventListener("click", (evt) => {
-    evt.target.closest(".modal-section").classList.remove("modal-section_opened");
-  });
+  button.addEventListener("click", (evt) => closeModal(evt.target.closest(".modal-section")));
 });
