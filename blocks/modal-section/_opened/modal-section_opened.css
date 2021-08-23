@@ -1,4 +1,4 @@
 .modal-section_opened {
   opacity: 1;
-  pointer-events: auto;
+  visibility: visible;
 }
