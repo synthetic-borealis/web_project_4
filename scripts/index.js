@@ -3,7 +3,7 @@ const placesSection = document.querySelector(".places");
 const editContainer = document.querySelector(".modal-section_type_edit");
 
 // Forms
-const editForm = document.querySelector(".edit-form");
+const editForm = document.querySelector(".form_type_edit");
 
 // Buttons
 const btnEditOpen = document.querySelector(".profile__edit-button");
@@ -14,8 +14,8 @@ const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
 
 // Input fields
-const inputName = document.querySelector(".edit-form__text-input_type_name");
-const inputJob = document.querySelector(".edit-form__text-input_type_job");
+const inputName = document.querySelector(".form__text-input_type_profile-name");
+const inputJob = document.querySelector(".form__text-input_type_profile-job");
 
 function updateFormContent() {
   inputName.value = profileName.textContent;
@@ -37,7 +37,7 @@ function saveProfile(evt) {
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
 
-  editContainer.classList.remove("edit-section_opened");
+  editContainer.classList.remove("modal-section_opened");
 }
 
 const initialCards = [
