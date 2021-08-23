@@ -71,7 +71,7 @@ function addPlaceCard(name, link) {
 
   placesSection.append(placeElement);
 }
-initialCards.forEach((card) => addPlaceCard(card.name, card.link));
+// initialCards.forEach((card) => addPlaceCard(card.name, card.link));
 
 // Edit Form
 btnEdit.addEventListener("click", () => {

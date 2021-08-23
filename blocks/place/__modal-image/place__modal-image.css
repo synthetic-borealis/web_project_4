@@ -1,0 +1,7 @@
+.place__modal-image {
+  /* object-fit: cover; */
+  width: 100%;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+}

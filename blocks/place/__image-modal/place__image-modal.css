@@ -1,0 +1,15 @@
+.place__image-modal {
+  display: flex;
+  position: relative;
+  max-height: 75vh;
+  height: calc(540 / 720 * 100%);
+  max-width: 75vw;
+  width: max-content;
+}
+
+@media screen and (max-width: 480px) {
+  .place__image-modal {
+    height: unset;
+    width: calc(240 / 320 * 100%);
+  }
+}
