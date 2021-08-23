@@ -1,6 +1,6 @@
-.like-button {
+.place__like-button {
   position: relative;
-  background-image: url("../../images/icon-heart.svg");
+  background-image: url("../../../images/icon-heart.svg");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -14,6 +14,6 @@
   border: 0;
 }
 
-.like-button:hover {
+.place__like-button:hover {
   opacity: .5;
 }
