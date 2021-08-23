@@ -50,6 +50,20 @@
     </div>
   </section>
 
+  <section class="modal-section modal-section_type_add">
+    <div class="form-modal form-modal_type_add">
+      <form class="form form_type_add" action="#" name="addForm">
+        <h2 class="form__title">New place</h2>
+        <input type="text" placeholder="Title" class="form__text-input form__text-input_type_place-title" name="title"
+          required>
+        <input type="text" placeholder="Image Link" class="form__text-input form__text-input_type_place-link"
+          name="link" required>
+        <input type="submit" value="Create" class="form__submit-btn">
+      </form>
+      <button class="close-button" type="button" aria-label="Close"></button>
+    </div>
+  </section>
+
   <template id="place-template">
     <article class="place">
       <button class="place__image" aria-label=""></button>

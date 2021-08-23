@@ -1,29 +1,35 @@
 // Containers
 const placesSection = document.querySelector(".places");
 const editContainer = document.querySelector(".modal-section_type_edit");
+const addContainer = document.querySelector(".modal-section_type_add");
 
 // Forms
 const editForm = document.querySelector(".form_type_edit");
+const addForm = document.querySelector(".form_type_add");
 
 // Buttons
-const btnEditOpen = document.querySelector(".profile__edit-button");
+const btnEdit = document.querySelector(".profile__edit-button");
 const btnEditClose = editContainer.querySelector(".close-button");
+const btnAdd = document.querySelector(".add-button");
+const btnAddClose = addContainer.querySelector(".close-button");
 
 // Labels, headings, etc.
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
 
 // Input fields
-const inputName = document.querySelector(".form__text-input_type_profile-name");
-const inputJob = document.querySelector(".form__text-input_type_profile-job");
+const inputProfileName = document.querySelector(".form__text-input_type_profile-name");
+const inputProfileJob = document.querySelector(".form__text-input_type_profile-job");
+const inputPlaceTitle = document.querySelector(".form__text-input_type_place-title");
+const inputPlaceLink = document.querySelector(".form__text-input_type_place-link");
 
 function updateFormContent() {
-  inputName.value = profileName.textContent;
-  inputJob.value = profileJob.textContent;
+  inputProfileName.value = profileName.textContent;
+  inputProfileJob.value = profileJob.textContent;
 }
 
 function toggleEditFormVisibility(evt) {
-  if (evt.target === btnEditOpen) {
+  if (evt.target === btnEdit) {
     updateFormContent();
     editContainer.classList.add("modal-section_opened");
   } else if ((evt.target === btnEditClose)) {
@@ -34,8 +40,8 @@ function toggleEditFormVisibility(evt) {
 function saveProfile(evt) {
   evt.preventDefault();
 
-  profileName.textContent = inputName.value;
-  profileJob.textContent = inputJob.value;
+  profileName.textContent = inputProfileName.value;
+  profileJob.textContent = inputProfileJob.value;
 
   editContainer.classList.remove("modal-section_opened");
 }
@@ -85,6 +91,18 @@ function addPlaceCard(name, link) {
 }
 initialCards.forEach((card) => addPlaceCard(card.name, card.link));
 
-btnEditOpen.addEventListener("click", toggleEditFormVisibility);
+// Edit Form
+btnEdit.addEventListener("click", toggleEditFormVisibility);
 btnEditClose.addEventListener("click", toggleEditFormVisibility);
 editForm.addEventListener("submit", saveProfile);
+
+// Add Form
+btnAdd.addEventListener("click", () => addContainer.classList.add("modal-section_opened"));
+btnAddClose.addEventListener("click", () => addContainer.classList.remove("modal-section_opened"));
+addForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+
+  addPlaceCard(inputPlaceTitle.value, inputPlaceLink.value);
+
+  addContainer.classList.remove("modal-section_opened");
+});
