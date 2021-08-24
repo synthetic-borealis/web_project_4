@@ -83,7 +83,7 @@ initialCards.reverse().forEach((card) => renderPlaceCard(card.name, card.link));
 // Edit Form
 btnEdit.addEventListener("click", () => {
   updateEditFormContent();
-  editContainer.classList.add("modal-section_opened");
+  openModal(editContainer);
 });
 editForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
@@ -92,7 +92,7 @@ editForm.addEventListener("submit", (evt) => {
 });
 
 // Add Form
-btnAdd.addEventListener("click", () => addContainer.classList.add("modal-section_opened"));
+btnAdd.addEventListener("click", () => openModal(addContainer));
 addForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
