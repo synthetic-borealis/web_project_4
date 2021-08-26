@@ -17,10 +17,10 @@ const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
 
 // Input fields
-const inputProfileName = document.querySelector(".form__text-input_type_profile-name");
-const inputProfileJob = document.querySelector(".form__text-input_type_profile-job");
-const inputPlaceTitle = document.querySelector(".form__text-input_type_place-title");
-const inputPlaceLink = document.querySelector(".form__text-input_type_place-link");
+const inputProfileName = document.querySelector(".form__input_type_profile-name");
+const inputProfileJob = document.querySelector(".form__input_type_profile-job");
+const inputPlaceTitle = document.querySelector(".form__input_type_place-title");
+const inputPlaceLink = document.querySelector(".form__input_type_place-link");
 
 function openModal(modal) {
   modal.classList.add("modal-section_opened");
