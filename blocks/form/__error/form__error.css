@@ -1,4 +1,4 @@
-.form__input-error {
+.form__error {
   margin: 0;
   padding: 0;
   position: absolute;
@@ -8,4 +8,5 @@
   line-height: 1.25;
   font-weight: normal;
   color: red;
+  visibility: hidden;
 }
