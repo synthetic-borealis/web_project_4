@@ -38,13 +38,21 @@
 
   <section class="modal-section modal-section_type_edit">
     <div class="form-modal form-modal_type_edit">
-      <form class="form form_type_edit" action="#" name="editForm">
-        <h2 class="form__title">Edit profile</h2>
-        <input type="text" placeholder="Name" name="name" required
-          class="form__text-input form__text-input_type_profile-name" minlength="2" maxlength="40">
-        <input type="text" placeholder="Job" name="job" required
-          class="form__text-input form__text-input_type_profile-job" minlength="2" maxlength="400">
-        <input type="submit" value="Save" class="form__submit-btn form__submit-btn_inactive">
+      <form class="form form_type_edit" action="#" name="editForm" novalidate>
+        <fieldset class="form__fieldset">
+          <h2 class="form__title">Edit profile</h2>
+          <label class="form__field">
+            <input type="text" placeholder="Name" name="name" required
+              class="form__text-input form__text-input_type_profile-name" minlength="2" maxlength="40">
+            <span class="form__input-error name-input-error">Here be error message.</span>
+          </label>
+          <label class="form__field">
+            <input type="text" placeholder="Job" name="job" required
+              class="form__text-input form__text-input_type_profile-job" minlength="2" maxlength="400">
+            <span class="form__input-error job-input-error">Here be error message.</span>
+          </label>
+          <input type="submit" value="Save" class="form__submit-btn form__submit-btn_inactive">
+        </fieldset>
       </form>
       <button class="close-button" type="button" aria-label="Close"></button>
     </div>

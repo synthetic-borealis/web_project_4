@@ -10,6 +10,9 @@
 @import url("../blocks/modal-section/_opened/modal-section_opened.css");
 @import url("../blocks/form-modal/form-modal.css");
 @import url("../blocks/form/form.css");
+@import url("../blocks/form/__fieldset/form__fieldset.css");
+@import url("../blocks/form/__field/form__field.css");
+@import url("../blocks/form/__input-error/form__input-error.css");
 @import url("../blocks/form/__title/form__title.css");
 @import url("../blocks/form/__text-input/form__text-input.css");
 @import url("../blocks/form/__submit-btn/form__submit-btn.css");
