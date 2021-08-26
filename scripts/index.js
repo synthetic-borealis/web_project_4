@@ -22,6 +22,28 @@ const inputProfileJob = document.querySelector(".form__text-input_type_profile-j
 const inputPlaceTitle = document.querySelector(".form__text-input_type_place-title");
 const inputPlaceLink = document.querySelector(".form__text-input_type_place-link");
 
+function openModal(modal) {
+  modal.classList.add("modal-section_opened");
+}
+
+function closeModal(modal) {
+  modal.classList.remove("modal-section_opened");
+}
+
+function closeAllModals() {
+  document.querySelectorAll(".modal-section").forEach((modal) => closeModal(modal));
+}
+
+function onClickModal(evt) {
+  if (evt.target.classList.contains("close-button") || evt.target === evt.currentTarget) {
+    closeModal(evt.currentTarget);
+  }
+}
+
+function addModalEvents(modal) {
+  modal.addEventListener("click", onClickModal);
+}
+
 function updateEditFormContent() {
   inputProfileName.value = profileName.textContent;
   inputProfileJob.value = profileJob.textContent;
@@ -39,14 +61,6 @@ function updateImageModal(name, link) {
   imageModalImage.src = link;
   imageModalImage.alt = name;
   imageModalCaption.textContent = name;
-}
-
-function openModal(modal) {
-  modal.classList.add("modal-section_opened");
-}
-
-function closeModal(modal) {
-  modal.classList.remove("modal-section_opened");
 }
 
 function openImageModal(name, link) {
@@ -102,6 +116,11 @@ addForm.addEventListener("submit", (evt) => {
 });
 
 // All Modals
-document.querySelectorAll(".close-button").forEach((button) => {
-  button.addEventListener("click", (evt) => closeModal(evt.target.closest(".modal-section")));
+document.querySelectorAll(".modal-section").forEach((modal) => addModalEvents(modal));
+document.addEventListener("keydown", (evt) => {
+  switch (evt.key) {
+    case "Escape":
+      closeAllModals();
+      break;
+  }
 });
