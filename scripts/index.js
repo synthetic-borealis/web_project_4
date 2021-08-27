@@ -94,6 +94,9 @@ function renderPlaceCard(name, link) {
 
 initialCards.reverse().forEach((card) => renderPlaceCard(card.name, card.link));
 
+updateEditFormContent();
+enableValidation(formClassList);
+
 // Edit Form
 btnEdit.addEventListener("click", () => {
   updateEditFormContent();

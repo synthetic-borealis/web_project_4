@@ -8,5 +8,6 @@
   line-height: 1.25;
   font-weight: normal;
   color: red;
-  visibility: hidden;
+  opacity: 0;
+  transition: opacity .1s linear;
 }

@@ -38,18 +38,18 @@
 
   <section class="modal-section modal-section_type_edit">
     <div class="form-modal form-modal_type_edit">
-      <form class="form form_type_edit" action="#" name="editForm" novalidate>
+      <form id="edit-form" class="form form_type_edit" action="#" name="editForm" autocomplete="off" novalidate>
         <fieldset class="form__fieldset">
           <h2 class="form__title">Edit profile</h2>
           <label class="form__field">
             <input id="profile-name-input" type="text" placeholder="Name" name="name" required
               class="form__input" minlength="2" maxlength="40">
-            <span class="form__error name-input-error">Here be error message.</span>
+            <span class="form__error profile-name-input-error">Here be error message.</span>
           </label>
           <label class="form__field">
             <input id="profile-job-input" type="text" placeholder="Job" name="job" required
               class="form__input" minlength="2" maxlength="400">
-            <span class="form__error job-input-error">Here be error message.</span>
+            <span class="form__error profile-job-input-error">Here be error message.</span>
           </label>
         </fieldset>
         <button type="submit" class="form__submit-btn">Save</button>
@@ -60,18 +60,18 @@
 
   <section class="modal-section modal-section_type_add">
     <div class="form-modal form-modal_type_add">
-      <form class="form form_type_add" action="#" name="addForm">
+      <form id="add-form" class="form form_type_add" action="#" autocomplete="off" name="addForm" novalidate>
         <fieldset class="form__fieldset">
           <h2 class="form__title">New place</h2>
           <label class="form__field">
             <input id="place-title-input" type="text" placeholder="Title" name="title" required
               class="form__input form__input_type_place-title" minlength="1" maxlength="30">
-            <span class="form__error name-input-error">Here be error message.</span>
+            <span class="form__error place-title-input-error">Here be error message.</span>
           </label>
           <label class="form__field">
             <input id="place-link-input" type="url" placeholder="Image Link" name="link" required
               class="form__input form__input_type_place-link">
-            <span class="form__error name-input-error">Here be error message.</span>
+            <span class="form__error place-link-input-error">Here be error message.</span>
           </label>
         </fieldset>
         <button type="submit" class="form__submit-btn">Create</button>
@@ -99,6 +99,7 @@
     </article>
   </template>
 
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/initial-cards.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
