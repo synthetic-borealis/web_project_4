@@ -1,4 +1,4 @@
-# Project 5: Around The U.S.
+# Project 6: Around The U.S.
 
 [Click here to visit](https://synthetic-borealis.github.io/web_project_4/)
 
@@ -8,7 +8,8 @@ A one page website for travellers. The website is responsive and should display 
 The website was created in HTML5, CSS & JavaScript.
 
 ## Possible Improvements
-- Optional: Ensure links point to valid image files when creating image cards.
+- Ensure url inputs don't accept non-https (or http) as valid input (perhaps with the pattern attribute).
+- Optional: Ensure links point to valid image files when creating image cards (will probably require use of AJAX).
 
 ## Showcase
 <figure>
