@@ -17,10 +17,37 @@ const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
 
 // Input fields
-const inputProfileName = document.querySelector(".form__text-input_type_profile-name");
-const inputProfileJob = document.querySelector(".form__text-input_type_profile-job");
-const inputPlaceTitle = document.querySelector(".form__text-input_type_place-title");
-const inputPlaceLink = document.querySelector(".form__text-input_type_place-link");
+const inputProfileName = document.querySelector("#profile-name-input");
+const inputProfileJob = document.querySelector("#profile-job-input");
+const inputPlaceTitle = document.querySelector("#place-title-input");
+const inputPlaceLink = document.querySelector("#place-link-input");
+
+function openModal(modal) {
+  const formElement = modal.querySelector(".form");
+  if (formElement) {
+    resetFormValidation(formElement, formClassList);
+  }
+
+  modal.classList.add("modal-section_opened");
+}
+
+function closeModal(modal) {
+  modal.classList.remove("modal-section_opened");
+}
+
+function closeAllModals() {
+  document.querySelectorAll(".modal-section").forEach((modal) => closeModal(modal));
+}
+
+function onClickModal(evt) {
+  if (evt.target.classList.contains("close-button") || evt.target === evt.currentTarget) {
+    closeModal(evt.currentTarget);
+  }
+}
+
+function addModalEvents(modal) {
+  modal.addEventListener("click", onClickModal);
+}
 
 function updateEditFormContent() {
   inputProfileName.value = profileName.textContent;
@@ -32,6 +59,11 @@ function updateProfileValues() {
   profileJob.textContent = inputProfileJob.value;
 }
 
+function resetAddFormFields() {
+  inputPlaceTitle.value = "";
+  inputPlaceLink.value = "";
+}
+
 function updateImageModal(name, link) {
   const imageModalImage = imageModalContainer.querySelector(".image-modal__image");
   const imageModalCaption = imageModalContainer.querySelector(".image-modal__caption");
@@ -41,17 +73,19 @@ function updateImageModal(name, link) {
   imageModalCaption.textContent = name;
 }
 
-function openModal(modal) {
-  modal.classList.add("modal-section_opened");
-}
-
-function closeModal(modal) {
-  modal.classList.remove("modal-section_opened");
-}
-
 function openImageModal(name, link) {
   updateImageModal(name, link);
   openModal(imageModalContainer);
+}
+
+function onClickPlaceCard(evt, name, link) {
+  if (evt.target.classList.contains("place__image")) {
+    openImageModal(name, link);
+  } else if (evt.target.classList.contains("place__like-button")) {
+    evt.target.classList.toggle("place__like-button_active");
+  } else if (evt.target.classList.contains("place__delete-button")) {
+    evt.currentTarget.remove();
+  }
 }
 
 function createPlaceCard(name, link) {
@@ -63,12 +97,7 @@ function createPlaceCard(name, link) {
   placeImage.ariaLabel = name;
   placeElement.querySelector(".place__caption").textContent = name;
 
-  placeImage.addEventListener("click", () => openImageModal(name, link));
-
-  const btnLike = placeElement.querySelector(".place__like-button");
-  btnLike.addEventListener("click", (evt) => evt.target.classList.toggle("place__like-button_active"));
-  const btnDelete = placeElement.querySelector(".place__delete-button");
-  btnDelete.addEventListener("click", () => placeElement.closest(".place").remove());
+  placeElement.addEventListener("click", (evt) => onClickPlaceCard(evt, name, link));
 
   return placeElement;
 }
@@ -79,6 +108,9 @@ function renderPlaceCard(name, link) {
 }
 
 initialCards.reverse().forEach((card) => renderPlaceCard(card.name, card.link));
+
+updateEditFormContent();
+enableValidation(formClassList);
 
 // Edit Form
 btnEdit.addEventListener("click", () => {
@@ -92,7 +124,10 @@ editForm.addEventListener("submit", (evt) => {
 });
 
 // Add Form
-btnAdd.addEventListener("click", () => openModal(addContainer));
+btnAdd.addEventListener("click", () => {
+  resetAddFormFields();
+  openModal(addContainer)
+});
 addForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
@@ -102,6 +137,11 @@ addForm.addEventListener("submit", (evt) => {
 });
 
 // All Modals
-document.querySelectorAll(".close-button").forEach((button) => {
-  button.addEventListener("click", (evt) => closeModal(evt.target.closest(".modal-section")));
+document.querySelectorAll(".modal-section").forEach((modal) => addModalEvents(modal));
+document.addEventListener("keydown", (evt) => {
+  switch (evt.key) {
+    case "Escape":
+      closeAllModals();
+      break;
+  }
 });
