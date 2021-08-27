@@ -59,6 +59,11 @@ function updateProfileValues() {
   profileJob.textContent = inputProfileJob.value;
 }
 
+function resetAddFormFields() {
+  inputPlaceTitle.value = "";
+  inputPlaceLink.value = "";
+}
+
 function updateImageModal(name, link) {
   const imageModalImage = imageModalContainer.querySelector(".image-modal__image");
   const imageModalCaption = imageModalContainer.querySelector(".image-modal__caption");
@@ -119,7 +124,10 @@ editForm.addEventListener("submit", (evt) => {
 });
 
 // Add Form
-btnAdd.addEventListener("click", () => openModal(addContainer));
+btnAdd.addEventListener("click", () => {
+  resetAddFormFields();
+  openModal(addContainer)
+});
 addForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
