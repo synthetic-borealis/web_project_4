@@ -23,6 +23,11 @@ const inputPlaceTitle = document.querySelector("#place-title-input");
 const inputPlaceLink = document.querySelector("#place-link-input");
 
 function openModal(modal) {
+  const formElement = modal.querySelector(".form");
+  if (formElement) {
+    resetFormValidation(formElement, formClassList);
+  }
+
   modal.classList.add("modal-section_opened");
 }
 

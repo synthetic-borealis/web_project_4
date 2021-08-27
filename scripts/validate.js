@@ -9,7 +9,6 @@ const formClassList = {
 };
 
 function showInputError(formElement, inputElement, errorMessage, formClasses) {
-  console.log(inputElement.id);
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
   inputElement.classList.add(formClasses.inputErrorClass);
@@ -63,6 +62,19 @@ function setFormValidation(formElement, formClasses) {
   const buttonElement = formElement.querySelector(formClasses.submitButtonSelector);
 
   fieldsetList.forEach((fieldsetElement) => setValidationEventListeners(fieldsetElement, buttonElement, formClasses));
+}
+
+function resetFormValidation(formElement, formClasses) {
+  const fieldsetList = Array.from(formElement.querySelectorAll(formClasses.fieldsetSelector));
+  const buttonElement = formElement.querySelector(formClasses.submitButtonSelector);
+
+  fieldsetList.forEach((fieldsetElement) => {
+    const inputList = Array.from(fieldsetElement.querySelectorAll(formClasses.inputSelector));
+    inputList.forEach((inputElement) => {
+      checkInputValidity(formElement, inputElement, formClasses);
+      toggleButtonState(inputList, buttonElement, formClasses.inactiveButtonClass);
+    });
+  });
 }
 
 function enableValidation(formClasses) {
