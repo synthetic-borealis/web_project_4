@@ -17,12 +17,17 @@ const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
 
 // Input fields
-const inputProfileName = document.querySelector(".form__text-input_type_profile-name");
-const inputProfileJob = document.querySelector(".form__text-input_type_profile-job");
-const inputPlaceTitle = document.querySelector(".form__text-input_type_place-title");
-const inputPlaceLink = document.querySelector(".form__text-input_type_place-link");
+const inputProfileName = document.querySelector("#profile-name-input");
+const inputProfileJob = document.querySelector("#profile-job-input");
+const inputPlaceTitle = document.querySelector("#place-title-input");
+const inputPlaceLink = document.querySelector("#place-link-input");
 
 function openModal(modal) {
+  const formElement = modal.querySelector(".form");
+  if (formElement) {
+    resetFormValidation(formElement, formClassList);
+  }
+
   modal.classList.add("modal-section_opened");
 }
 
@@ -93,6 +98,9 @@ function renderPlaceCard(name, link) {
 }
 
 initialCards.reverse().forEach((card) => renderPlaceCard(card.name, card.link));
+
+updateEditFormContent();
+enableValidation(formClassList);
 
 // Edit Form
 btnEdit.addEventListener("click", () => {
