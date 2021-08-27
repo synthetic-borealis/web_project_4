@@ -73,6 +73,16 @@ function openImageModal(name, link) {
   openModal(imageModalContainer);
 }
 
+function onClickPlaceCard(evt, name, link) {
+  if (evt.target.classList.contains("place__image")) {
+    openImageModal(name, link);
+  } else if (evt.target.classList.contains("place__like-button")) {
+    evt.target.classList.toggle("place__like-button_active");
+  } else if (evt.target.classList.contains("place__delete-button")) {
+    evt.currentTarget.remove();
+  }
+}
+
 function createPlaceCard(name, link) {
   const placeTemplate = document.querySelector("#place-template").content;
   const placeElement = placeTemplate.querySelector(".place").cloneNode(true);
@@ -82,12 +92,7 @@ function createPlaceCard(name, link) {
   placeImage.ariaLabel = name;
   placeElement.querySelector(".place__caption").textContent = name;
 
-  placeImage.addEventListener("click", () => openImageModal(name, link));
-
-  const btnLike = placeElement.querySelector(".place__like-button");
-  btnLike.addEventListener("click", (evt) => evt.target.classList.toggle("place__like-button_active"));
-  const btnDelete = placeElement.querySelector(".place__delete-button");
-  btnDelete.addEventListener("click", () => placeElement.closest(".place").remove());
+  placeElement.addEventListener("click", (evt) => onClickPlaceCard(evt, name, link));
 
   return placeElement;
 }
