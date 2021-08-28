@@ -44,10 +44,18 @@ function toggleButtonState(inputList, buttonElement, inactiveButtonClass) {
   }
 }
 
+function ignoreEnterKey(evt, inputList) {
+  if (evt.key === "Enter" && hasInvalidInput(inputList)) {
+    evt.preventDefault();
+  }
+}
+
 function setValidationEventListeners(formElement, buttonElement, formClasses) {
   const inputList = Array.from(formElement.querySelectorAll(formClasses.inputSelector));
 
   toggleButtonState(inputList, buttonElement, formClasses.inactiveButtonClass);
+  // Ensure pressing enter doesn't submit unvalidated forms
+  formElement.addEventListener("keydown", (evt) => ignoreEnterKey(evt, inputList));
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
