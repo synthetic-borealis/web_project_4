@@ -1,46 +1,71 @@
 // Containers
-const placesSection = document.querySelector(".places");
-const editContainer = document.querySelector(".modal-section_type_edit");
-const addContainer = document.querySelector(".modal-section_type_add");
-const imageModalContainer = document.querySelector(".modal-section_type_image");
+const containerPlaces = document.querySelector(".places");
+const containerEdit = document.querySelector(".modal-section_type_edit");
+const containerAdd = document.querySelector(".modal-section_type_add");
+const containerImageModal = document.querySelector(".modal-section_type_image");
 
 // Forms
-const editForm = document.querySelector(".form_type_edit");
-const addForm = document.querySelector(".form_type_add");
+const formEdit = document.querySelector(".form_type_edit");
+const formAdd = document.querySelector(".form_type_add");
 
 // Buttons
-const btnEdit = document.querySelector(".profile__edit-button");
-const btnAdd = document.querySelector(".add-button");
+const buttonEdit = document.querySelector(".profile__edit-button");
+const buttonAdd = document.querySelector(".add-button");
 
 // Labels, headings, etc.
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
+const imageImageModal = containerImageModal.querySelector(
+  ".image-modal__image"
+);
+const captionImageModal = containerImageModal.querySelector(
+  ".image-modal__caption"
+);
 
 // Input fields
-const inputProfileName = document.querySelector("#profile-name-input");
-const inputProfileJob = document.querySelector("#profile-job-input");
-const inputPlaceTitle = document.querySelector("#place-title-input");
-const inputPlaceLink = document.querySelector("#place-link-input");
+const inputProfileName = formEdit.elements.namedItem("profile-name-input");
+const inputProfileJob = formEdit.elements.namedItem("profile-job-input");
+const inputPlaceTitle = formAdd.elements.namedItem("place-title-input");
+const inputPlaceLink = formAdd.elements.namedItem("place-link-input");
 
-function openModal(modal) {
+// Templates
+const placeTemplate = document.querySelector("#place-template").content;
+
+function clearFormErrors(modal) {
   const formElement = modal.querySelector(".form");
   if (formElement) {
     resetFormValidation(formElement, formClassList);
   }
+}
 
+function onKeydownEscape(evt) {
+  switch (evt.key) {
+    case "Escape":
+      closeAllModals();
+      break;
+  }
+}
+
+function openModal(modal) {
   modal.classList.add("modal-section_opened");
+  document.addEventListener("keydown", onKeydownEscape);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal-section_opened");
+  document.removeEventListener("keydown", onKeydownEscape);
+  clearFormErrors(modal);
 }
 
 function closeAllModals() {
-  document.querySelectorAll(".modal-section").forEach((modal) => closeModal(modal));
+  document.querySelectorAll(".modal-section").forEach(closeModal);
 }
 
 function onClickModal(evt) {
-  if (evt.target.classList.contains("close-button") || evt.target === evt.currentTarget) {
+  if (
+    evt.target.classList.contains("close-button") ||
+    evt.target === evt.currentTarget
+  ) {
     closeModal(evt.currentTarget);
   }
 }
@@ -60,88 +85,90 @@ function updateProfileValues() {
 }
 
 function resetAddFormFields() {
-  inputPlaceTitle.value = "";
-  inputPlaceLink.value = "";
+  formAdd.reset();
 }
 
-function updateImageModal(name, link) {
-  const imageModalImage = imageModalContainer.querySelector(".image-modal__image");
-  const imageModalCaption = imageModalContainer.querySelector(".image-modal__caption");
-
-  imageModalImage.src = link;
-  imageModalImage.alt = name;
-  imageModalCaption.textContent = name;
+function updateImageModal(cardData) {
+  imageImageModal.src = cardData.link;
+  imageImageModal.alt = cardData.name;
+  captionImageModal.textContent = cardData.name;
 }
 
-function openImageModal(name, link) {
-  updateImageModal(name, link);
-  openModal(imageModalContainer);
+function openImageModal(cardData) {
+  updateImageModal(cardData);
+  openModal(containerImageModal);
 }
 
-function onClickPlaceCard(evt, name, link) {
-  if (evt.target.classList.contains("place__image")) {
-    openImageModal(name, link);
-  } else if (evt.target.classList.contains("place__like-button")) {
-    evt.target.classList.toggle("place__like-button_active");
-  } else if (evt.target.classList.contains("place__delete-button")) {
-    evt.currentTarget.remove();
-  }
+function onClickImage(evt, cardData) {
+  openImageModal(cardData);
 }
 
-function createPlaceCard(name, link) {
-  const placeTemplate = document.querySelector("#place-template").content;
+function onClickLikeButton(evt) {
+  evt.target.classList.toggle("place__like-button_active");
+}
+
+function onClickDeleteButton(evt) {
+  evt.target.closest(".place").remove();
+}
+
+function createPlaceCard(cardData) {
   const placeElement = placeTemplate.querySelector(".place").cloneNode(true);
-
   const placeImage = placeElement.querySelector(".place__image");
-  placeImage.style.backgroundImage = `url("${link}")`;
-  placeImage.ariaLabel = name;
-  placeElement.querySelector(".place__caption").textContent = name;
+  const buttonLike = placeElement.querySelector(".place__like-button");
+  const buttonDelete = placeElement.querySelector(".place__delete-button");
 
-  placeElement.addEventListener("click", (evt) => onClickPlaceCard(evt, name, link));
+  placeImage.style.backgroundImage = `url("${cardData.link}")`;
+  placeImage.ariaLabel = cardData.name;
+  placeElement.querySelector(".place__caption").textContent = cardData.name;
+
+  placeImage.addEventListener("click", (evt) => onClickImage(evt, cardData));
+  buttonLike.addEventListener("click", onClickLikeButton);
+  buttonDelete.addEventListener("click", onClickDeleteButton);
 
   return placeElement;
 }
 
-function renderPlaceCard(name, link) {
-  const placeCard = createPlaceCard(name, link);
-  placesSection.prepend(placeCard);
+function renderPlaceCard(cardData) {
+  const placeCard = createPlaceCard(cardData);
+  containerPlaces.prepend(placeCard);
 }
 
-initialCards.reverse().forEach((card) => renderPlaceCard(card.name, card.link));
+initialCards.reverse().forEach(renderPlaceCard);
 
 updateEditFormContent();
 enableValidation(formClassList);
 
-// Edit Form
-btnEdit.addEventListener("click", () => {
+function onClickEditButton() {
   updateEditFormContent();
-  openModal(editContainer);
-});
-editForm.addEventListener("submit", (evt) => {
+  openModal(containerEdit);
+}
+
+function onSubmitEditForm(evt) {
   evt.preventDefault();
   updateProfileValues();
-  closeModal(editContainer);
-});
+  closeModal(containerEdit);
+}
+
+function onClickAddButton() {
+  resetAddFormFields();
+  openModal(containerAdd);
+}
+
+function onSubmitAddForm(evt) {
+  evt.preventDefault();
+  renderPlaceCard({ name: inputPlaceTitle.value, link: inputPlaceLink.value });
+  closeModal(containerAdd);
+}
+
+// Edit Form
+buttonEdit.addEventListener("click", onClickEditButton);
+formEdit.addEventListener("submit", onSubmitEditForm);
 
 // Add Form
-btnAdd.addEventListener("click", () => {
-  resetAddFormFields();
-  openModal(addContainer)
-});
-addForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-
-  renderPlaceCard(inputPlaceTitle.value, inputPlaceLink.value);
-
-  closeModal(addContainer);
-});
+buttonAdd.addEventListener("click", onClickAddButton);
+formAdd.addEventListener("submit", onSubmitAddForm);
 
 // All Modals
-document.querySelectorAll(".modal-section").forEach((modal) => addModalEvents(modal));
-document.addEventListener("keydown", (evt) => {
-  switch (evt.key) {
-    case "Escape":
-      closeAllModals();
-      break;
-  }
-});
+document
+  .querySelectorAll(".modal-section")
+  .forEach((modal) => addModalEvents(modal));
