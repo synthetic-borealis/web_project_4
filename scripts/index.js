@@ -1,16 +1,16 @@
 // Containers
-const placesSection = document.querySelector(".places");
-const editContainer = document.querySelector(".modal-section_type_edit");
-const addContainer = document.querySelector(".modal-section_type_add");
-const imageModalContainer = document.querySelector(".modal-section_type_image");
+const containerPlaces = document.querySelector(".places");
+const containerEdit = document.querySelector(".modal-section_type_edit");
+const containerAdd = document.querySelector(".modal-section_type_add");
+const containerImageModal = document.querySelector(".modal-section_type_image");
 
 // Forms
-const editForm = document.querySelector(".form_type_edit");
-const addForm = document.querySelector(".form_type_add");
+const formEdit = document.querySelector(".form_type_edit");
+const formAdd = document.querySelector(".form_type_add");
 
 // Buttons
-const btnEdit = document.querySelector(".profile__edit-button");
-const btnAdd = document.querySelector(".add-button");
+const buttonEdit = document.querySelector(".profile__edit-button");
+const buttonAdd = document.querySelector(".add-button");
 
 // Labels, headings, etc.
 const profileName = document.querySelector(".profile__name");
@@ -65,8 +65,8 @@ function resetAddFormFields() {
 }
 
 function updateImageModal(name, link) {
-  const imageModalImage = imageModalContainer.querySelector(".image-modal__image");
-  const imageModalCaption = imageModalContainer.querySelector(".image-modal__caption");
+  const imageModalImage = containerImageModal.querySelector(".image-modal__image");
+  const imageModalCaption = containerImageModal.querySelector(".image-modal__caption");
 
   imageModalImage.src = link;
   imageModalImage.alt = name;
@@ -75,7 +75,7 @@ function updateImageModal(name, link) {
 
 function openImageModal(name, link) {
   updateImageModal(name, link);
-  openModal(imageModalContainer);
+  openModal(containerImageModal);
 }
 
 function onClickPlaceCard(evt, name, link) {
@@ -104,7 +104,7 @@ function createPlaceCard(name, link) {
 
 function renderPlaceCard(name, link) {
   const placeCard = createPlaceCard(name, link);
-  placesSection.prepend(placeCard);
+  containerPlaces.prepend(placeCard);
 }
 
 initialCards.reverse().forEach((card) => renderPlaceCard(card.name, card.link));
@@ -113,27 +113,27 @@ updateEditFormContent();
 enableValidation(formClassList);
 
 // Edit Form
-btnEdit.addEventListener("click", () => {
+buttonEdit.addEventListener("click", () => {
   updateEditFormContent();
-  openModal(editContainer);
+  openModal(containerEdit);
 });
-editForm.addEventListener("submit", (evt) => {
+formEdit.addEventListener("submit", (evt) => {
   evt.preventDefault();
   updateProfileValues();
-  closeModal(editContainer);
+  closeModal(containerEdit);
 });
 
 // Add Form
-btnAdd.addEventListener("click", () => {
+buttonAdd.addEventListener("click", () => {
   resetAddFormFields();
-  openModal(addContainer)
+  openModal(containerAdd)
 });
-addForm.addEventListener("submit", (evt) => {
+formAdd.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
   renderPlaceCard(inputPlaceTitle.value, inputPlaceLink.value);
 
-  closeModal(addContainer);
+  closeModal(containerAdd);
 });
 
 // All Modals
