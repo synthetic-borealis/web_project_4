@@ -15,8 +15,12 @@ const buttonAdd = document.querySelector(".add-button");
 // Labels, headings, etc.
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
-const imageImageModal = containerImageModal.querySelector(".image-modal__image");
-const captionImageModal = containerImageModal.querySelector(".image-modal__caption");
+const imageImageModal = containerImageModal.querySelector(
+  ".image-modal__image"
+);
+const captionImageModal = containerImageModal.querySelector(
+  ".image-modal__caption"
+);
 
 // Input fields
 const inputProfileName = formEdit.elements.namedItem("profile-name-input");
@@ -34,12 +38,22 @@ function clearFormErrors(modal) {
   }
 }
 
+function onKeydownEscape(evt) {
+  switch (evt.key) {
+    case "Escape":
+      closeAllModals();
+      break;
+  }
+}
+
 function openModal(modal) {
   modal.classList.add("modal-section_opened");
+  document.addEventListener("keydown", onKeydownEscape);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal-section_opened");
+  document.removeEventListener("keydown", onKeydownEscape);
   clearFormErrors(modal);
 }
 
@@ -48,7 +62,10 @@ function closeAllModals() {
 }
 
 function onClickModal(evt) {
-  if (evt.target.classList.contains("close-button") || evt.target === evt.currentTarget) {
+  if (
+    evt.target.classList.contains("close-button") ||
+    evt.target === evt.currentTarget
+  ) {
     closeModal(evt.currentTarget);
   }
 }
@@ -82,26 +99,31 @@ function openImageModal(cardData) {
   openModal(containerImageModal);
 }
 
-function onClickPlaceCard(evt, cardData) {
-  if (evt.target.classList.contains("place__image")) {
-    openImageModal(cardData);
-  } else if (evt.target.classList.contains("place__like-button")) {
-    evt.target.classList.toggle("place__like-button_active");
-  } else if (evt.target.classList.contains("place__delete-button")) {
-    evt.currentTarget.remove();
-    evt.currentTarget = null;
-  }
+function onClickImage(evt, cardData) {
+  openImageModal(cardData);
+}
+
+function onClickLikeButton(evt) {
+  evt.target.classList.toggle("place__like-button_active");
+}
+
+function onClickDeleteButton(evt) {
+  evt.target.closest(".place").remove();
 }
 
 function createPlaceCard(cardData) {
   const placeElement = placeTemplate.querySelector(".place").cloneNode(true);
-
   const placeImage = placeElement.querySelector(".place__image");
+  const buttonLike = placeElement.querySelector(".place__like-button");
+  const buttonDelete = placeElement.querySelector(".place__delete-button");
+
   placeImage.style.backgroundImage = `url("${cardData.link}")`;
   placeImage.ariaLabel = cardData.name;
   placeElement.querySelector(".place__caption").textContent = cardData.name;
 
-  placeElement.addEventListener("click", (evt) => onClickPlaceCard(evt, cardData));
+  placeImage.addEventListener("click", (evt) => onClickImage(evt, cardData));
+  buttonLike.addEventListener("click", onClickLikeButton);
+  buttonDelete.addEventListener("click", onClickDeleteButton);
 
   return placeElement;
 }
@@ -116,36 +138,37 @@ initialCards.reverse().forEach(renderPlaceCard);
 updateEditFormContent();
 enableValidation(formClassList);
 
-// Edit Form
-buttonEdit.addEventListener("click", () => {
+function onClickEditButton() {
   updateEditFormContent();
   openModal(containerEdit);
-});
-formEdit.addEventListener("submit", (evt) => {
+}
+
+function onSubmitEditForm(evt) {
   evt.preventDefault();
   updateProfileValues();
   closeModal(containerEdit);
-});
+}
+
+function onClickAddButton() {
+  resetAddFormFields();
+  openModal(containerAdd);
+}
+
+function onSubmitAddForm(evt) {
+  evt.preventDefault();
+  renderPlaceCard({ name: inputPlaceTitle.value, link: inputPlaceLink.value });
+  closeModal(containerAdd);
+}
+
+// Edit Form
+buttonEdit.addEventListener("click", onClickEditButton);
+formEdit.addEventListener("submit", onSubmitEditForm);
 
 // Add Form
-buttonAdd.addEventListener("click", () => {
-  resetAddFormFields();
-  openModal(containerAdd)
-});
-formAdd.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-
-  renderPlaceCard({name: inputPlaceTitle.value, link: inputPlaceLink.value});
-
-  closeModal(containerAdd);
-});
+buttonAdd.addEventListener("click", onClickAddButton);
+formAdd.addEventListener("submit", onSubmitAddForm);
 
 // All Modals
-document.querySelectorAll(".modal-section").forEach((modal) => addModalEvents(modal));
-document.addEventListener("keydown", (evt) => {
-  switch (evt.key) {
-    case "Escape":
-      closeAllModals();
-      break;
-  }
-});
+document
+  .querySelectorAll(".modal-section")
+  .forEach((modal) => addModalEvents(modal));
