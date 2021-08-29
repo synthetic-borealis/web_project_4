@@ -17,10 +17,10 @@ const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
 
 // Input fields
-const inputProfileName = document.querySelector("#profile-name-input");
-const inputProfileJob = document.querySelector("#profile-job-input");
-const inputPlaceTitle = document.querySelector("#place-title-input");
-const inputPlaceLink = document.querySelector("#place-link-input");
+const inputProfileName = formEdit.elements.namedItem("profile-name-input");
+const inputProfileJob = formEdit.elements.namedItem("profile-job-input");
+const inputPlaceTitle = formAdd.elements.namedItem("place-title-input");
+const inputPlaceLink = formAdd.elements.namedItem("place-link-input");
 
 function openModal(modal) {
   const formElement = modal.querySelector(".form");
