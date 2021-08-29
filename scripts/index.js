@@ -15,6 +15,8 @@ const buttonAdd = document.querySelector(".add-button");
 // Labels, headings, etc.
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
+const imageImageModal = containerImageModal.querySelector(".image-modal__image");
+const captionImageModal = containerImageModal.querySelector(".image-modal__caption");
 
 // Input fields
 const inputProfileName = formEdit.elements.namedItem("profile-name-input");
@@ -22,21 +24,27 @@ const inputProfileJob = formEdit.elements.namedItem("profile-job-input");
 const inputPlaceTitle = formAdd.elements.namedItem("place-title-input");
 const inputPlaceLink = formAdd.elements.namedItem("place-link-input");
 
-function openModal(modal) {
+// Templates
+const placeTemplate = document.querySelector("#place-template").content;
+
+function clearFormErrors(modal) {
   const formElement = modal.querySelector(".form");
   if (formElement) {
     resetFormValidation(formElement, formClassList);
   }
+}
 
+function openModal(modal) {
   modal.classList.add("modal-section_opened");
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal-section_opened");
+  clearFormErrors(modal);
 }
 
 function closeAllModals() {
-  document.querySelectorAll(".modal-section").forEach((modal) => closeModal(modal));
+  document.querySelectorAll(".modal-section").forEach(closeModal);
 }
 
 function onClickModal(evt) {
@@ -60,54 +68,50 @@ function updateProfileValues() {
 }
 
 function resetAddFormFields() {
-  inputPlaceTitle.value = "";
-  inputPlaceLink.value = "";
+  formAdd.reset();
 }
 
-function updateImageModal(name, link) {
-  const imageModalImage = containerImageModal.querySelector(".image-modal__image");
-  const imageModalCaption = containerImageModal.querySelector(".image-modal__caption");
-
-  imageModalImage.src = link;
-  imageModalImage.alt = name;
-  imageModalCaption.textContent = name;
+function updateImageModal(cardData) {
+  imageImageModal.src = cardData.link;
+  imageImageModal.alt = cardData.name;
+  captionImageModal.textContent = cardData.name;
 }
 
-function openImageModal(name, link) {
-  updateImageModal(name, link);
+function openImageModal(cardData) {
+  updateImageModal(cardData);
   openModal(containerImageModal);
 }
 
-function onClickPlaceCard(evt, name, link) {
+function onClickPlaceCard(evt, cardData) {
   if (evt.target.classList.contains("place__image")) {
-    openImageModal(name, link);
+    openImageModal(cardData);
   } else if (evt.target.classList.contains("place__like-button")) {
     evt.target.classList.toggle("place__like-button_active");
   } else if (evt.target.classList.contains("place__delete-button")) {
     evt.currentTarget.remove();
+    evt.currentTarget = null;
   }
 }
 
-function createPlaceCard(name, link) {
-  const placeTemplate = document.querySelector("#place-template").content;
+function createPlaceCard(cardData) {
   const placeElement = placeTemplate.querySelector(".place").cloneNode(true);
 
   const placeImage = placeElement.querySelector(".place__image");
-  placeImage.style.backgroundImage = `url("${link}")`;
-  placeImage.ariaLabel = name;
-  placeElement.querySelector(".place__caption").textContent = name;
+  placeImage.style.backgroundImage = `url("${cardData.link}")`;
+  placeImage.ariaLabel = cardData.name;
+  placeElement.querySelector(".place__caption").textContent = cardData.name;
 
-  placeElement.addEventListener("click", (evt) => onClickPlaceCard(evt, name, link));
+  placeElement.addEventListener("click", (evt) => onClickPlaceCard(evt, cardData));
 
   return placeElement;
 }
 
-function renderPlaceCard(name, link) {
-  const placeCard = createPlaceCard(name, link);
+function renderPlaceCard(cardData) {
+  const placeCard = createPlaceCard(cardData);
   containerPlaces.prepend(placeCard);
 }
 
-initialCards.reverse().forEach((card) => renderPlaceCard(card.name, card.link));
+initialCards.reverse().forEach(renderPlaceCard);
 
 updateEditFormContent();
 enableValidation(formClassList);
@@ -131,7 +135,7 @@ buttonAdd.addEventListener("click", () => {
 formAdd.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
-  renderPlaceCard(inputPlaceTitle.value, inputPlaceLink.value);
+  renderPlaceCard({name: inputPlaceTitle.value, link: inputPlaceLink.value});
 
   closeModal(containerAdd);
 });

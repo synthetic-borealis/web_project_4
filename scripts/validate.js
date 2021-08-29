@@ -3,6 +3,7 @@ const formClassList = {
   inputSelector: ".form__input",
   submitButtonSelector: ".form__submit-btn",
   fieldsetSelector: ".form__fieldset",
+  errorSelector: ".form__error",
   inactiveButtonClass: "form__submit-btn_disabled",
   inputErrorClass: "form__input_type_error",
   errorClass: "form__error_visible"
@@ -79,7 +80,7 @@ function resetFormValidation(formElement, formClasses) {
   fieldsetList.forEach((fieldsetElement) => {
     const inputList = Array.from(fieldsetElement.querySelectorAll(formClasses.inputSelector));
     inputList.forEach((inputElement) => {
-      checkInputValidity(formElement, inputElement, formClasses);
+      hideInputError(formElement, inputElement, formClasses);
       toggleButtonState(inputList, buttonElement, formClasses.inactiveButtonClass);
     });
   });
