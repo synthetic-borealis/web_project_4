@@ -1,3 +1,6 @@
+// Imports
+import Card from "./Card.js";
+
 // Containers
 const containerPlaces = document.querySelector(".places");
 const containerEdit = document.querySelector(".modal-section_type_edit");
@@ -99,37 +102,8 @@ function openImageModal(cardData) {
   openModal(containerImageModal);
 }
 
-function onClickImage(evt, cardData) {
-  openImageModal(cardData);
-}
-
-function onClickLikeButton(evt) {
-  evt.target.classList.toggle("place__like-button_active");
-}
-
-function onClickDeleteButton(evt) {
-  evt.target.closest(".place").remove();
-}
-
-function createPlaceCard(cardData) {
-  const placeElement = placeTemplate.querySelector(".place").cloneNode(true);
-  const placeImage = placeElement.querySelector(".place__image");
-  const buttonLike = placeElement.querySelector(".place__like-button");
-  const buttonDelete = placeElement.querySelector(".place__delete-button");
-
-  placeImage.style.backgroundImage = `url("${cardData.link}")`;
-  placeImage.ariaLabel = cardData.name;
-  placeElement.querySelector(".place__caption").textContent = cardData.name;
-
-  placeImage.addEventListener("click", (evt) => onClickImage(evt, cardData));
-  buttonLike.addEventListener("click", onClickLikeButton);
-  buttonDelete.addEventListener("click", onClickDeleteButton);
-
-  return placeElement;
-}
-
 function renderPlaceCard(cardData) {
-  const placeCard = createPlaceCard(cardData);
+  const placeCard = new Card(cardData, "#place-template", openImageModal).getCard();
   containerPlaces.prepend(placeCard);
 }
 
