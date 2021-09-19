@@ -82,9 +82,7 @@ class FormValidator {
   }
 
   enableValidation() {
-    const formList = Array.from(document.querySelectorAll(this._formClasses.formSelector));
-
-    formList.forEach((formElement) => this._setFormValidation(formElement));
+    this._setFormValidation(this._formElement);
   }
 }
 
