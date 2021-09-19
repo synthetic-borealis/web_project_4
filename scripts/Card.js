@@ -6,6 +6,24 @@ class Card {
     this._openImageModal = openImageModal;
   }
 
+  _onClickLikeButton(evt) {
+    evt.target.classList.toggle("place__like-button_active");
+  }
+
+  _onClickDeleteButton(evt) {
+    evt.target.closest(".place").remove();
+  }
+
+  _onClickImage(evt) {
+    this._openImageModal({name: this._name, link: this._imageLink});
+  }
+
+  _setEventListeners() {
+    this._buttonLike.addEventListener("click", this._onClickLikeButton);
+    this._buttonDelete.addEventListener("click", this._onClickDeleteButton);
+    this._image.addEventListener("click", (evt) => this._onClickImage(evt));
+  }
+
   _getCardTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector);
@@ -28,24 +46,6 @@ class Card {
     this._setEventListeners();
 
     return this._cardElement;
-  }
-
-  _onClickLikeButton(evt) {
-    evt.target.classList.toggle("place__like-button_active");
-  }
-
-  _onClickDeleteButton(evt) {
-    evt.target.closest(".place").remove();
-  }
-
-  _onClickImage(evt) {
-    this._openImageModal({name: this._name, link: this._imageLink});
-  }
-
-  _setEventListeners() {
-    this._buttonLike.addEventListener("click", this._onClickLikeButton);
-    this._buttonDelete.addEventListener("click", this._onClickDeleteButton);
-    this._image.addEventListener("click", (evt) => this._onClickImage(evt));
   }
 }
 

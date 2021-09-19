@@ -1,5 +1,6 @@
 // Imports
 import Card from "./Card.js";
+import FormValidatior from "./FormValidator.js"
 
 // Containers
 const containerPlaces = document.querySelector(".places");
@@ -10,6 +11,13 @@ const containerImageModal = document.querySelector(".modal-section_type_image");
 // Forms
 const formEdit = document.querySelector(".form_type_edit");
 const formAdd = document.querySelector(".form_type_add");
+
+// Form Validators
+const formValidatorEdit = new FormValidatior(formClassList, formEdit);
+const formValidatorAdd = new FormValidatior(formClassList, formAdd);
+
+formValidatorEdit.enableValidation();
+formValidatorAdd.enableValidation();
 
 // Buttons
 const buttonEdit = document.querySelector(".profile__edit-button");
@@ -30,9 +38,6 @@ const inputProfileName = formEdit.elements.namedItem("profile-name-input");
 const inputProfileJob = formEdit.elements.namedItem("profile-job-input");
 const inputPlaceTitle = formAdd.elements.namedItem("place-title-input");
 const inputPlaceLink = formAdd.elements.namedItem("place-link-input");
-
-// Templates
-const placeTemplate = document.querySelector("#place-template").content;
 
 function clearFormErrors(modal) {
   const formElement = modal.querySelector(".form");
@@ -57,7 +62,7 @@ function openModal(modal) {
 function closeModal(modal) {
   modal.classList.remove("modal-section_opened");
   document.removeEventListener("keydown", onKeydownEscape);
-  clearFormErrors(modal);
+  // clearFormErrors(modal);
 }
 
 function closeAllModals() {
@@ -110,7 +115,7 @@ function renderPlaceCard(cardData) {
 initialCards.reverse().forEach(renderPlaceCard);
 
 updateEditFormContent();
-enableValidation(formClassList);
+// enableValidation(formClassList);
 
 function onClickEditButton() {
   updateEditFormContent();
