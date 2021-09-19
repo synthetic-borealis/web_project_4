@@ -68,18 +68,18 @@ class FormValidator {
     fieldsetList.forEach((fieldsetElement) => this._setValidationEventListeners(fieldsetElement, buttonElement));
   }
 
-  // resetFormValidation(formElement) {
-  //   const fieldsetList = Array.from(formElement.querySelectorAll(this._formClasses.fieldsetSelector));
-  //   const buttonElement = formElement.querySelector(this._formClasses.submitButtonSelector);
+  resetFormValidation() {
+    const fieldsetList = Array.from(this._formElement.querySelectorAll(this._formClasses.fieldsetSelector));
+    const buttonElement = this._formElement.querySelector(this._formClasses.submitButtonSelector);
 
-  //   fieldsetList.forEach((fieldsetElement) => {
-  //     const inputList = Array.from(fieldsetElement.querySelectorAll(this._formClasses.inputSelector));
-  //     inputList.forEach((inputElement) => {
-  //       hideInputError(formElement, inputElement);
-  //       toggleButtonState(inputList, buttonElement);
-  //     });
-  //   });
-  // }
+    fieldsetList.forEach((fieldsetElement) => {
+      const inputList = Array.from(fieldsetElement.querySelectorAll(this._formClasses.inputSelector));
+      inputList.forEach((inputElement) => {
+        this._hideInputError(this._formElement, inputElement);
+        this._toggleButtonState(inputList, buttonElement);
+      });
+    });
+  }
 
   enableValidation() {
     const formList = Array.from(document.querySelectorAll(this._formClasses.formSelector));
