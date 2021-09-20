@@ -41,7 +41,7 @@ class FormValidator {
   }
 
   _ignoreEnterKey(evt, inputList) {
-    if (evt.key === "Enter" && hasInvalidInput(inputList)) {
+    if (evt.key === "Enter" && this._hasInvalidInput(inputList)) {
       evt.preventDefault();
     }
   }
