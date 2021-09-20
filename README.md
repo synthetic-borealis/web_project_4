@@ -1,4 +1,4 @@
-# Project 6: Around The U.S.
+# Project 7: Around The U.S.
 
 [Click here to visit](https://synthetic-borealis.github.io/web_project_4/)
 

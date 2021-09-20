@@ -1,3 +1,9 @@
+// Imports
+import Card from "./Card.js";
+import FormValidatior from "./FormValidator.js"
+import { formClassList } from "./form-class-list.js";
+import { initialCards } from "./initial-cards.js";
+
 // Containers
 const containerPlaces = document.querySelector(".places");
 const containerEdit = document.querySelector(".modal-section_type_edit");
@@ -7,6 +13,10 @@ const containerImageModal = document.querySelector(".modal-section_type_image");
 // Forms
 const formEdit = document.querySelector(".form_type_edit");
 const formAdd = document.querySelector(".form_type_add");
+
+// Form Validators
+const formValidatorEdit = new FormValidatior(formClassList, formEdit);
+const formValidatorAdd = new FormValidatior(formClassList, formAdd);
 
 // Buttons
 const buttonEdit = document.querySelector(".profile__edit-button");
@@ -28,24 +38,6 @@ const inputProfileJob = formEdit.elements.namedItem("profile-job-input");
 const inputPlaceTitle = formAdd.elements.namedItem("place-title-input");
 const inputPlaceLink = formAdd.elements.namedItem("place-link-input");
 
-// Templates
-const placeTemplate = document.querySelector("#place-template").content;
-
-function clearFormErrors(modal) {
-  const formElement = modal.querySelector(".form");
-  if (formElement) {
-    resetFormValidation(formElement, formClassList);
-  }
-}
-
-function onKeydownEscape(evt) {
-  switch (evt.key) {
-    case "Escape":
-      closeAllModals();
-      break;
-  }
-}
-
 function openModal(modal) {
   modal.classList.add("modal-section_opened");
   document.addEventListener("keydown", onKeydownEscape);
@@ -54,11 +46,18 @@ function openModal(modal) {
 function closeModal(modal) {
   modal.classList.remove("modal-section_opened");
   document.removeEventListener("keydown", onKeydownEscape);
-  clearFormErrors(modal);
 }
 
 function closeAllModals() {
   document.querySelectorAll(".modal-section").forEach(closeModal);
+}
+
+function onKeydownEscape(evt) {
+  switch (evt.key) {
+    case "Escape":
+      closeAllModals();
+      break;
+  }
 }
 
 function onClickModal(evt) {
@@ -72,6 +71,11 @@ function onClickModal(evt) {
 
 function addModalEvents(modal) {
   modal.addEventListener("click", onClickModal);
+}
+
+function enableFormValidation() {
+  formValidatorEdit.enableValidation();
+  formValidatorAdd.enableValidation();
 }
 
 function updateEditFormContent() {
@@ -99,47 +103,15 @@ function openImageModal(cardData) {
   openModal(containerImageModal);
 }
 
-function onClickImage(evt, cardData) {
-  openImageModal(cardData);
-}
-
-function onClickLikeButton(evt) {
-  evt.target.classList.toggle("place__like-button_active");
-}
-
-function onClickDeleteButton(evt) {
-  evt.target.closest(".place").remove();
-}
-
-function createPlaceCard(cardData) {
-  const placeElement = placeTemplate.querySelector(".place").cloneNode(true);
-  const placeImage = placeElement.querySelector(".place__image");
-  const buttonLike = placeElement.querySelector(".place__like-button");
-  const buttonDelete = placeElement.querySelector(".place__delete-button");
-
-  placeImage.style.backgroundImage = `url("${cardData.link}")`;
-  placeImage.ariaLabel = cardData.name;
-  placeElement.querySelector(".place__caption").textContent = cardData.name;
-
-  placeImage.addEventListener("click", (evt) => onClickImage(evt, cardData));
-  buttonLike.addEventListener("click", onClickLikeButton);
-  buttonDelete.addEventListener("click", onClickDeleteButton);
-
-  return placeElement;
-}
-
 function renderPlaceCard(cardData) {
-  const placeCard = createPlaceCard(cardData);
+  const placeCard = new Card(cardData, "#place-template", openImageModal).getCard();
   containerPlaces.prepend(placeCard);
 }
 
-initialCards.reverse().forEach(renderPlaceCard);
-
-updateEditFormContent();
-enableValidation(formClassList);
 
 function onClickEditButton() {
   updateEditFormContent();
+  formValidatorEdit.resetFormValidation();
   openModal(containerEdit);
 }
 
@@ -151,6 +123,7 @@ function onSubmitEditForm(evt) {
 
 function onClickAddButton() {
   resetAddFormFields();
+  formValidatorAdd.resetFormValidation();
   openModal(containerAdd);
 }
 
@@ -160,15 +133,20 @@ function onSubmitAddForm(evt) {
   closeModal(containerAdd);
 }
 
-// Edit Form
+initialCards.reverse().forEach(renderPlaceCard);
+
+updateEditFormContent();
+enableFormValidation();
+
+// Edit Form Events
 buttonEdit.addEventListener("click", onClickEditButton);
 formEdit.addEventListener("submit", onSubmitEditForm);
 
-// Add Form
+// Add Form Events
 buttonAdd.addEventListener("click", onClickAddButton);
 formAdd.addEventListener("submit", onSubmitAddForm);
 
-// All Modals
+// Modal Events
 document
   .querySelectorAll(".modal-section")
   .forEach((modal) => addModalEvents(modal));
