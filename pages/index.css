@@ -38,13 +38,13 @@
 
 /* Section: Places */
 @import url("../blocks/places/places.css");
-@import url("../blocks/place/card.css");
-@import url("../blocks/place/__image/card__image.css");
-@import url("../blocks/place/__container/card__container.css");
-@import url("../blocks/place/__caption/card__caption.css");
-@import url("../blocks/place/__like-button/card__like-button.css");
-@import url("../blocks/place/__like-button/_active/card__like-button_active.css");
-@import url("../blocks/place/__delete-button/card__delete-button.css");
+@import url("../blocks/card/card.css");
+@import url("../blocks/card/__image/card__image.css");
+@import url("../blocks/card/__container/card__container.css");
+@import url("../blocks/card/__caption/card__caption.css");
+@import url("../blocks/card/__like-button/card__like-button.css");
+@import url("../blocks/card/__like-button/_active/card__like-button_active.css");
+@import url("../blocks/card/__delete-button/card__delete-button.css");
 @import url("../blocks/image-modal/image-modal.css");
 @import url("../blocks/image-modal/__image/image-modal__image.css");
 @import url("../blocks/image-modal/__caption/image-modal__caption.css");
