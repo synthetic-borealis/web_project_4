@@ -1,4 +1,4 @@
-.place__like-button {
+.card__like-button {
   position: relative;
   background-image: url("../../../images/icon-heart.svg");
   background-position: center;
@@ -14,6 +14,6 @@
   border: 0;
 }
 
-.place__like-button:hover {
+.card__like-button:hover {
   opacity: .5;
 }

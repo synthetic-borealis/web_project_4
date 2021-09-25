@@ -7,11 +7,11 @@ class Card {
   }
 
   _onClickLikeButton(evt) {
-    evt.target.classList.toggle("place__like-button_active");
+    evt.target.classList.toggle("card__like-button_active");
   }
 
   _onClickDeleteButton(evt) {
-    evt.target.closest(".place").remove();
+    evt.target.closest(".card").remove();
   }
 
   _onClickImage(evt) {
@@ -32,12 +32,12 @@ class Card {
   }
 
   getCard() {
-    this._cardElement = this._getCardTemplate().content.querySelector(".place").cloneNode(true);
+    this._cardElement = this._getCardTemplate().content.querySelector(".card").cloneNode(true);
 
-    this._buttonLike = this._cardElement.querySelector(".place__like-button");
-    this._buttonDelete = this._cardElement.querySelector(".place__delete-button");
-    this._image = this._cardElement.querySelector(".place__image");
-    this._caption = this._cardElement.querySelector(".place__caption");
+    this._buttonLike = this._cardElement.querySelector(".card__like-button");
+    this._buttonDelete = this._cardElement.querySelector(".card__delete-button");
+    this._image = this._cardElement.querySelector(".card__image");
+    this._caption = this._cardElement.querySelector(".card__caption");
 
     this._image.style.backgroundImage = `url(${this._imageLink})`;
     this._image.ariaLabel = this._name;

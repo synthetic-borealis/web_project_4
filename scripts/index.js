@@ -104,7 +104,7 @@ function openImageModal(cardData) {
 }
 
 function renderPlaceCard(cardData) {
-  const placeCard = new Card(cardData, "#place-template", openImageModal).getCard();
+  const placeCard = new Card(cardData, "#card-template", openImageModal).getCard();
   containerPlaces.prepend(placeCard);
 }
 
