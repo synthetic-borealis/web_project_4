@@ -1,3 +1,4 @@
+// Initial card list
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -25,4 +26,16 @@ const initialCards = [
   }
 ];
 
-export { initialCards };
+// Container Selectors
+const containerPlacesSelector = ".places";
+const containerEditSelector = ".popup-section_type_edit";
+const containerAddSelector = ".popup-section_type_add";
+const containerImagePopupSelector = ".popup-section_type_image";
+
+export {
+  initialCards,
+  containerPlacesSelector,
+  containerEditSelector,
+  containerAddSelector,
+  containerImagePopupSelector,
+};
