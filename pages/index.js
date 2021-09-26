@@ -3,6 +3,7 @@
 import Card from "../components/Card.js";
 import FormValidatior from "../components/FormValidator.js";
 import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
 // Constants & Utilities
 import { formClassList } from "../utils/form-class-list.js";
@@ -13,6 +14,7 @@ const containerPlacesSelector = ".places";
 const containerEdit = document.querySelector(".popup-section_type_edit");
 const containerAdd = document.querySelector(".popup-section_type_add");
 const containerImagePopup = document.querySelector(".popup-section_type_image");
+const containerImagePopupSelector = ".popup-section_type_image";
 
 // Forms
 const formEdit = document.querySelector(".form_type_edit");
@@ -29,12 +31,6 @@ const buttonAdd = document.querySelector(".add-button");
 // Labels, headings, etc.
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
-const imageImagePopup = containerImagePopup.querySelector(
-  ".image-popup__image"
-);
-const captionImagePopup = containerImagePopup.querySelector(
-  ".image-popup__caption"
-);
 
 // Input fields
 const inputProfileName = formEdit.elements.namedItem("profile-name-input");
@@ -44,6 +40,10 @@ const inputPlaceLink = formAdd.elements.namedItem("place-link-input");
 
 // Templates
 const cardTemplateSelector = "#card-template";
+
+// Popups
+const popupImage = new PopupWithImage(containerImagePopupSelector);
+popupImage.setEventListeners();
 
 function openPopup(popup) {
   popup.classList.add("popup-section_opened");
@@ -99,19 +99,8 @@ function resetAddFormFields() {
   formAdd.reset();
 }
 
-function updateImagePopup(cardData) {
-  imageImagePopup.src = cardData.link;
-  imageImagePopup.alt = cardData.name;
-  captionImagePopup.textContent = cardData.name;
-}
-
-function openImagePopup(cardData) {
-  updateImagePopup(cardData);
-  openPopup(containerImagePopup);
-}
-
 const sectionPlaces = new Section({ items: initialCards.reverse(), renderer: (item) => {
-  const placeCard = new Card(item, cardTemplateSelector, openImagePopup).getCard();
+  const placeCard = new Card(item, cardTemplateSelector, () => popupImage.open(item)).getCard();
   sectionPlaces.addItem(placeCard);
 } }, containerPlacesSelector);
 sectionPlaces.renderItems();
@@ -136,11 +125,14 @@ function onClickAddButton() {
 
 function onSubmitAddForm(evt) {
   evt.preventDefault();
-  const cardElement = new Card({
+  const cardData = {
     name: inputPlaceTitle.value,
-    link: inputPlaceLink.value },
+    link: inputPlaceLink.value
+  };
+  const cardElement = new Card(
+    cardData,
     cardTemplateSelector,
-    openImagePopup).getCard();
+    () => popupImage.open(cardData)).getCard();
   sectionPlaces.addItem(cardElement);
   closePopup(containerAdd);
 }
@@ -157,6 +149,6 @@ buttonAdd.addEventListener("click", onClickAddButton);
 formAdd.addEventListener("submit", onSubmitAddForm);
 
 // Popup Events
-document
-  .querySelectorAll(".popup-section")
-  .forEach((popup) => addPopupEvents(popup));
+// document
+//   .querySelectorAll(".popup-section")
+//   .forEach((popup) => addPopupEvents(popup));
