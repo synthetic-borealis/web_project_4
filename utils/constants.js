@@ -26,6 +26,26 @@ const initialCards = [
   }
 ];
 
+// Form Classes
+const formClassList = {
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__submit-btn",
+  fieldsetSelector: ".form__fieldset",
+  errorSelector: ".form__error",
+  inactiveButtonClass: "form__submit-btn_disabled",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__error_visible"
+};
+
+// Popup Classes
+const popupClassList = {
+  openedPopup: "popup-section_opened",
+  closeButton: "close-button",
+  imageSelector: ".image-popup__image",
+  imageCaptionSelector: ".image-popup__caption"
+};
+
 // Container Selectors
 const containerPlacesSelector = ".places";
 const containerEditSelector = ".popup-section_type_edit";
@@ -34,6 +54,8 @@ const containerImagePopupSelector = ".popup-section_type_image";
 
 export {
   initialCards,
+  formClassList,
+  popupClassList,
   containerPlacesSelector,
   containerEditSelector,
   containerAddSelector,

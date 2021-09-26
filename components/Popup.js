@@ -1,3 +1,5 @@
+import { popupClassList } from "../utils/constants.js";
+
 class Popup {
   constructor(popupSelector) {
     this._selector = popupSelector;
@@ -14,7 +16,7 @@ class Popup {
 
   _handlePopupClick(evt, target) {
     if (
-      evt.target.classList.contains("close-button")
+      evt.target.classList.contains(popupClassList.closeButton)
       || evt.target === evt.currentTarget
     ) {
       target.close();
@@ -22,11 +24,11 @@ class Popup {
   }
 
   open() {
-    this._container.classList.add("popup-section_opened");
+    this._container.classList.add(popupClassList.openedPopup);
   }
 
   close() {
-    this._container.classList.remove("popup-section_opened");
+    this._container.classList.remove(popupClassList.openedPopup);
   }
 
   setEventListeners() {

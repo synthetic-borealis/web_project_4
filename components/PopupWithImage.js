@@ -1,11 +1,12 @@
 import Popup from "./Popup.js";
+import { popupClassList } from "../utils/constants.js";
 
 class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
 
-    this._image = this._container.querySelector(`.image-popup__image`);
-    this._caption = this._container.querySelector(`.image-popup__caption`);
+    this._image = this._container.querySelector(popupClassList.imageSelector);
+    this._caption = this._container.querySelector(popupClassList.imageCaptionSelector);
   }
 
   _updateContent(data) {
