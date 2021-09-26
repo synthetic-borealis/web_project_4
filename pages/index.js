@@ -10,9 +10,9 @@ import { initialCards } from "../utils/initial-cards.js";
 
 // Containers
 const containerPlacesSelector = ".places";
-const containerEdit = document.querySelector(".modal-section_type_edit");
-const containerAdd = document.querySelector(".modal-section_type_add");
-const containerImageModal = document.querySelector(".modal-section_type_image");
+const containerEdit = document.querySelector(".popup-section_type_edit");
+const containerAdd = document.querySelector(".popup-section_type_add");
+const containerImageModal = document.querySelector(".popup-section_type_image");
 
 // Forms
 const formEdit = document.querySelector(".form_type_edit");
@@ -46,17 +46,17 @@ const inputPlaceLink = formAdd.elements.namedItem("place-link-input");
 const cardTemplateSelector = "#card-template";
 
 function openModal(modal) {
-  modal.classList.add("modal-section_opened");
+  modal.classList.add("popup-section_opened");
   document.addEventListener("keydown", onKeydownEscape);
 }
 
 function closeModal(modal) {
-  modal.classList.remove("modal-section_opened");
+  modal.classList.remove("popup-section_opened");
   document.removeEventListener("keydown", onKeydownEscape);
 }
 
 function closeAllModals() {
-  document.querySelectorAll(".modal-section").forEach(closeModal);
+  document.querySelectorAll(".popup-section").forEach(closeModal);
 }
 
 function onKeydownEscape(evt) {
@@ -158,5 +158,5 @@ formAdd.addEventListener("submit", onSubmitAddForm);
 
 // Modal Events
 document
-  .querySelectorAll(".modal-section")
+  .querySelectorAll(".popup-section")
   .forEach((modal) => addModalEvents(modal));

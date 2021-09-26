@@ -1,4 +1,4 @@
-.modal-section {
+.popup-section {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -14,7 +14,7 @@
   transition: visibility .5s, opacity .5s linear;
 }
 
-.modal-section::before {
+.popup-section::before {
   position: absolute;
   width: 100%;
   height: 100%;
