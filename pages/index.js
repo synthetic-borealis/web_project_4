@@ -80,5 +80,11 @@ sectionPlaces.renderItems();
 updateEditFormContent(userInfo.getUserInfo());
 
 // Form Popup Events
-buttonEdit.addEventListener("click", () => popupEditForm.open());
-buttonAdd.addEventListener("click", () => popupAddForm.open());
+buttonEdit.addEventListener("click", () => {
+  updateEditFormContent(userInfo.getUserInfo());
+  popupEditForm.open();
+});
+buttonAdd.addEventListener("click", () => {
+  popupAddForm.resetForm();
+  popupAddForm.open();
+});
