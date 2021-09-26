@@ -9,4 +9,4 @@ const formClassList = {
   errorClass: "form__error_visible"
 };
 
-export { formClassList };
+export default formClassList;

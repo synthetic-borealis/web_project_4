@@ -4,31 +4,35 @@ class Popup {
     this._container = document.querySelector(this._selector);
   }
 
-  _handleEscClose(evt) {
-    if (evt.key === "Escape") {
-      this.close();
+  _handleEscClose(evt, target) {
+    switch (evt.key) {
+      case "Escape":
+        target.close();
+        break;
     }
   }
 
-  _handlePopupClick(evt) {
+  _handlePopupClick(evt, target) {
     if (
       evt.target.classList.contains("close-button")
       || evt.target === evt.currentTarget
-      ) {
-        this.close();
-      }
+    ) {
+      target.close();
+    }
   }
 
   open() {
-    this._container.classList.add(`${this._selector}_opened`);
+    this._container.classList.add("popup-section_opened");
   }
 
   close() {
-    this._container.classList.remove(`${this._selector}_opened`);
+    this._container.classList.remove("popup-section_opened");
   }
 
   setEventListeners() {
-    document.addEventListener("keydown", this._handleEscClose);
-    this._container.addEventListener("click", this._handlePopupClick);
+    document.addEventListener("keydown", (evt) => this._handleEscClose(evt, this));
+    this._container.addEventListener("click", (evt) => this._handlePopupClick(evt, this));
   }
 }
+
+export default Popup;
