@@ -1,4 +1,4 @@
-.form-modal {
+.form-popup {
   position: relative;
   border-radius: 10px;
   background-color: white;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 800px) {
-  .form-modal {
+  .form-popup {
     width: calc(282 / 320 * 100%);
     max-width: 282px;
   }

@@ -8,7 +8,7 @@
 @import url("../blocks/add-button/add-button.css");
 @import url("../blocks/popup-section/popup-section.css");
 @import url("../blocks/popup-section/_opened/popup-section_opened.css");
-@import url("../blocks/form-modal/form-modal.css");
+@import url("../blocks/form-popup/form-popup.css");
 @import url("../blocks/form/form.css");
 @import url("../blocks/form/__fieldset/form__fieldset.css");
 @import url("../blocks/form/__field/form__field.css");
