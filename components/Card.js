@@ -1,21 +1,23 @@
+import { cardClassList } from "../utils/constants.js";
+
 class Card {
-  constructor(data, cardSelector, openImageModal) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._imageLink = data.link;
     this._cardSelector = cardSelector;
-    this._openImageModal = openImageModal;
+    this._handleCardClick = handleCardClick;
   }
 
   _onClickLikeButton(evt) {
-    evt.target.classList.toggle("card__like-button_active");
+    evt.target.classList.toggle(cardClassList.activeLikeButtonClass);
   }
 
   _onClickDeleteButton(evt) {
-    evt.target.closest(".card").remove();
+    evt.target.closest(cardClassList.cardSelector).remove();
   }
 
   _onClickImage(evt) {
-    this._openImageModal({name: this._name, link: this._imageLink});
+    this._handleCardClick({name: this._name, link: this._imageLink});
   }
 
   _setEventListeners() {
@@ -32,12 +34,12 @@ class Card {
   }
 
   getCard() {
-    this._cardElement = this._getCardTemplate().content.querySelector(".card").cloneNode(true);
+    this._cardElement = this._getCardTemplate().content.querySelector(cardClassList.cardSelector).cloneNode(true);
 
-    this._buttonLike = this._cardElement.querySelector(".card__like-button");
-    this._buttonDelete = this._cardElement.querySelector(".card__delete-button");
-    this._image = this._cardElement.querySelector(".card__image");
-    this._caption = this._cardElement.querySelector(".card__caption");
+    this._buttonLike = this._cardElement.querySelector(cardClassList.likeButtonSelector);
+    this._buttonDelete = this._cardElement.querySelector(cardClassList.deleteButtonSelector);
+    this._image = this._cardElement.querySelector(cardClassList.imageSelector);
+    this._caption = this._cardElement.querySelector(cardClassList.captionSelector);
 
     this._image.style.backgroundImage = `url(${this._imageLink})`;
     this._image.ariaLabel = this._name;
