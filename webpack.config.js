@@ -1,5 +1,7 @@
 // connect path, an OS agnostic filepath utility
 const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -28,4 +30,10 @@ module.exports = {
       },
     ]
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/index.html"
+    }),
+    new CleanWebpackPlugin(),
+  ]
 }
