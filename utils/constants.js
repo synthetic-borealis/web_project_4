@@ -46,6 +46,16 @@ const popupClassList = {
   imageCaptionSelector: ".image-popup__caption"
 };
 
+// Card Classes
+const cardClassList = {
+  cardSelector: ".card",
+  imageSelector: ".card__image",
+  captionSelector: ".card__caption",
+  likeButtonSelector: ".card__like-button",
+  activeLikeButtonClass: "card__like-button_active",
+  deleteButtonSelector: ".card__delete-button"
+};
+
 // Container Selectors
 const containerPlacesSelector = ".places";
 const containerEditSelector = ".popup-section_type_edit";
@@ -60,6 +70,7 @@ export {
   initialCards,
   formClassList,
   popupClassList,
+  cardClassList,
   containerPlacesSelector,
   containerEditSelector,
   containerAddSelector,
