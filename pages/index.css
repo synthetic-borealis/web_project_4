@@ -20,7 +20,7 @@
 @import url("../blocks/form/__submit-btn/form__submit-btn.css");
 @import url("../blocks/form/__submit-btn/_disabled/form__submit-btn_disabled.css");
 @import url("../blocks/close-button/close-button.css");
-@import url("../blocks/close-button/_type/close-button_type_image-modal.css");
+@import url("../blocks/close-button/_type/close-button_type_image-popup.css");
 
 /* Section specific styles */
 /* Section: Header */
@@ -45,9 +45,9 @@
 @import url("../blocks/card/__like-button/card__like-button.css");
 @import url("../blocks/card/__like-button/_active/card__like-button_active.css");
 @import url("../blocks/card/__delete-button/card__delete-button.css");
-@import url("../blocks/image-modal/image-modal.css");
-@import url("../blocks/image-modal/__image/image-modal__image.css");
-@import url("../blocks/image-modal/__caption/image-modal__caption.css");
+@import url("../blocks/image-popup/image-popup.css");
+@import url("../blocks/image-popup/__image/image-popup__image.css");
+@import url("../blocks/image-popup/__caption/image-popup__caption.css");
 
 /* Section: Footer */
 @import url("../blocks/footer/footer.css");

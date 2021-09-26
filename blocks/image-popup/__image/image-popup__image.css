@@ -1,4 +1,4 @@
-.image-modal__image {
+.image-popup__image {
   max-height: 75vh;
   height: calc(540 / 720 * 100%);
   max-width: 75vw;

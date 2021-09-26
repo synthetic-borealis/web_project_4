@@ -1,11 +1,11 @@
-.image-modal {
+.image-popup {
   display: flex;
   position: relative;
   /* width: max-content; */
 }
 
 @media screen and (max-width: 480px) {
-  .image-modal {
+  .image-popup {
     height: unset;
     width: calc(240 / 320 * 100%);
   }

@@ -12,7 +12,7 @@ import { initialCards } from "../utils/initial-cards.js";
 const containerPlacesSelector = ".places";
 const containerEdit = document.querySelector(".popup-section_type_edit");
 const containerAdd = document.querySelector(".popup-section_type_add");
-const containerImageModal = document.querySelector(".popup-section_type_image");
+const containerImagePopup = document.querySelector(".popup-section_type_image");
 
 // Forms
 const formEdit = document.querySelector(".form_type_edit");
@@ -29,11 +29,11 @@ const buttonAdd = document.querySelector(".add-button");
 // Labels, headings, etc.
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
-const imageImageModal = containerImageModal.querySelector(
-  ".image-modal__image"
+const imageImagePopup = containerImagePopup.querySelector(
+  ".image-popup__image"
 );
-const captionImageModal = containerImageModal.querySelector(
-  ".image-modal__caption"
+const captionImagePopup = containerImagePopup.querySelector(
+  ".image-popup__caption"
 );
 
 // Input fields
@@ -45,39 +45,39 @@ const inputPlaceLink = formAdd.elements.namedItem("place-link-input");
 // Templates
 const cardTemplateSelector = "#card-template";
 
-function openModal(modal) {
-  modal.classList.add("popup-section_opened");
+function openPopup(popup) {
+  popup.classList.add("popup-section_opened");
   document.addEventListener("keydown", onKeydownEscape);
 }
 
-function closeModal(modal) {
-  modal.classList.remove("popup-section_opened");
+function closePopup(popup) {
+  popup.classList.remove("popup-section_opened");
   document.removeEventListener("keydown", onKeydownEscape);
 }
 
-function closeAllModals() {
-  document.querySelectorAll(".popup-section").forEach(closeModal);
+function closeAllPopups() {
+  document.querySelectorAll(".popup-section").forEach(closePopup);
 }
 
 function onKeydownEscape(evt) {
   switch (evt.key) {
     case "Escape":
-      closeAllModals();
+      closeAllPopups();
       break;
   }
 }
 
-function onClickModal(evt) {
+function onClickPopup(evt) {
   if (
     evt.target.classList.contains("close-button") ||
     evt.target === evt.currentTarget
   ) {
-    closeModal(evt.currentTarget);
+    closePopup(evt.currentTarget);
   }
 }
 
-function addModalEvents(modal) {
-  modal.addEventListener("click", onClickModal);
+function addPopupEvents(popup) {
+  popup.addEventListener("click", onClickPopup);
 }
 
 function enableFormValidation() {
@@ -99,19 +99,19 @@ function resetAddFormFields() {
   formAdd.reset();
 }
 
-function updateImageModal(cardData) {
-  imageImageModal.src = cardData.link;
-  imageImageModal.alt = cardData.name;
-  captionImageModal.textContent = cardData.name;
+function updateImagePopup(cardData) {
+  imageImagePopup.src = cardData.link;
+  imageImagePopup.alt = cardData.name;
+  captionImagePopup.textContent = cardData.name;
 }
 
-function openImageModal(cardData) {
-  updateImageModal(cardData);
-  openModal(containerImageModal);
+function openImagePopup(cardData) {
+  updateImagePopup(cardData);
+  openPopup(containerImagePopup);
 }
 
 const sectionPlaces = new Section({ items: initialCards.reverse(), renderer: (item) => {
-  const placeCard = new Card(item, cardTemplateSelector, openImageModal).getCard();
+  const placeCard = new Card(item, cardTemplateSelector, openImagePopup).getCard();
   sectionPlaces.addItem(placeCard);
 } }, containerPlacesSelector);
 sectionPlaces.renderItems();
@@ -119,19 +119,19 @@ sectionPlaces.renderItems();
 function onClickEditButton() {
   updateEditFormContent();
   formValidatorEdit.resetFormValidation();
-  openModal(containerEdit);
+  openPopup(containerEdit);
 }
 
 function onSubmitEditForm(evt) {
   evt.preventDefault();
   updateProfileValues();
-  closeModal(containerEdit);
+  closePopup(containerEdit);
 }
 
 function onClickAddButton() {
   resetAddFormFields();
   formValidatorAdd.resetFormValidation();
-  openModal(containerAdd);
+  openPopup(containerAdd);
 }
 
 function onSubmitAddForm(evt) {
@@ -140,9 +140,9 @@ function onSubmitAddForm(evt) {
     name: inputPlaceTitle.value,
     link: inputPlaceLink.value },
     cardTemplateSelector,
-    openImageModal).getCard();
+    openImagePopup).getCard();
   sectionPlaces.addItem(cardElement);
-  closeModal(containerAdd);
+  closePopup(containerAdd);
 }
 
 updateEditFormContent();
@@ -156,7 +156,7 @@ formEdit.addEventListener("submit", onSubmitEditForm);
 buttonAdd.addEventListener("click", onClickAddButton);
 formAdd.addEventListener("submit", onSubmitAddForm);
 
-// Modal Events
+// Popup Events
 document
   .querySelectorAll(".popup-section")
-  .forEach((modal) => addModalEvents(modal));
+  .forEach((popup) => addPopupEvents(popup));
