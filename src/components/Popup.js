@@ -2,38 +2,38 @@ import { popupClassList } from "../utils/constants.js";
 
 class Popup {
   constructor(popupSelector) {
-    this._selector = popupSelector;
-    this._container = document.querySelector(this._selector);
+    this._container = document.querySelector(popupSelector);
   }
 
-  _handleEscClose(evt, target) {
+  _handleEscClose = evt => {
     switch (evt.key) {
       case "Escape":
-        target.close();
+        this.close();
         break;
     }
   }
 
-  _handlePopupClick(evt, target) {
+  _handlePopupClick = evt => {
     if (
       evt.target.classList.contains(popupClassList.closeButton)
       || evt.target === evt.currentTarget
     ) {
-      target.close();
+      this.close();
     }
   }
 
   open() {
+    document.addEventListener("keydown", this._handleEscClose);
     this._container.classList.add(popupClassList.openedPopup);
   }
 
   close() {
+    document.removeEventListener("keydown", this._handleEscClose);
     this._container.classList.remove(popupClassList.openedPopup);
   }
 
   setEventListeners() {
-    document.addEventListener("keydown", (evt) => this._handleEscClose(evt, this));
-    this._container.addEventListener("click", (evt) => this._handlePopupClick(evt, this));
+    this._container.addEventListener("click", this._handlePopupClick);
   }
 }
 

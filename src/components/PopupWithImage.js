@@ -15,10 +15,10 @@ class PopupWithImage extends Popup {
     this._caption.textContent = data.name;
   }
 
-  open(data) {
-    super.open();
+  open = data => {
     this._updateContent(data);
-  }
+    super.open();
+  };
 }
 
 export default PopupWithImage;

@@ -1,5 +1,3 @@
-import Card from "./Card.js";
-
 class Section {
   constructor( { items, renderer }, sectionSelector) {
     this._items = items;
