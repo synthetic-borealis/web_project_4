@@ -16,7 +16,7 @@ class Card {
     evt.target.closest(cardClassList.cardSelector).remove();
   }
 
-  _onClickImage(evt) {
+  _onClickImage() {
     this._handleCardClick({name: this._name, link: this._imageLink});
   }
 

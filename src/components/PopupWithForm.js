@@ -24,17 +24,20 @@ class PopupWithForm extends Popup {
     return inputValues;
   }
 
-  open() {
+  // The edit form needs this since its values get
+  // updated when it's being opened
+  resetFormValidation() {
     this._formValidator.resetFormValidation();
-    super.open();
-  }
-
-  close() {
-    super.close();
   }
 
   resetForm() {
     this._form.reset();
+  }
+
+  close() {
+    super.close();
+    this.resetForm();
+    this.resetFormValidation();
   }
 
   setEventListeners() {
@@ -42,8 +45,8 @@ class PopupWithForm extends Popup {
 
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._inputValues = this._getInputValues();
-      this._onSubmit(this._inputValues);
+      const inputValues = this._getInputValues();
+      this._onSubmit(inputValues);
     });
   }
 }
