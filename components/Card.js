@@ -1,9 +1,9 @@
 class Card {
-  constructor(data, cardSelector, openImageModal) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._imageLink = data.link;
     this._cardSelector = cardSelector;
-    this._openImageModal = openImageModal;
+    this._handleCardClick = handleCardClick;
   }
 
   _onClickLikeButton(evt) {
@@ -15,7 +15,7 @@ class Card {
   }
 
   _onClickImage(evt) {
-    this._openImageModal({name: this._name, link: this._imageLink});
+    this._handleCardClick({name: this._name, link: this._imageLink});
   }
 
   _setEventListeners() {
