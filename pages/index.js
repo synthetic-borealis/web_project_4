@@ -4,6 +4,7 @@ import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
 // Containers
 import {
@@ -12,6 +13,8 @@ import {
   containerEditSelector,
   containerAddSelector,
   containerImagePopupSelector,
+  profileNameSelector,
+  profileJobSelector
 } from "../utils/constants.js";
 
 // Forms
@@ -21,10 +24,6 @@ const formEdit = document.querySelector(".form_type_edit");
 const buttonEdit = document.querySelector(".profile__edit-button");
 const buttonAdd = document.querySelector(".add-button");
 
-// Labels, headings, etc.
-const profileName = document.querySelector(".profile__name");
-const profileJob = document.querySelector(".profile__job");
-
 // Input fields
 const inputProfileName = formEdit.elements.namedItem("profile-name-input");
 const inputProfileJob = formEdit.elements.namedItem("profile-job-input");
@@ -32,25 +31,23 @@ const inputProfileJob = formEdit.elements.namedItem("profile-job-input");
 // Templates
 const cardTemplateSelector = "#card-template";
 
+// User Info
+const userInfo = new UserInfo(profileNameSelector, profileJobSelector);
+
 // Popups
 const popupImage = new PopupWithImage(containerImagePopupSelector);
 popupImage.setEventListeners();
 
-function updateEditFormContent() {
-  inputProfileName.value = profileName.textContent;
-  inputProfileJob.value = profileJob.textContent;
-}
-
-function updateProfileValues({ name, job }) {
-
-  profileName.textContent = name;
-  profileJob.textContent = job;
+function updateEditFormContent(data) {
+  inputProfileName.value = data.name;
+  inputProfileJob.value = data.job;
 }
 
 function onSubmitEditForm(inputs) {
-  updateProfileValues(inputs);
+  console.log(inputs);
+  userInfo.setUserInfo(inputs);
   popupEditForm.close();
-  updateEditFormContent();
+  updateEditFormContent(userInfo.getUserInfo());
 }
 
 const popupEditForm = new PopupWithForm(onSubmitEditForm, containerEditSelector);
@@ -80,7 +77,7 @@ const sectionPlaces = new Section({ items: initialCards.reverse(), renderer: (it
 } }, containerPlacesSelector);
 sectionPlaces.renderItems();
 
-updateEditFormContent();
+updateEditFormContent(userInfo.getUserInfo());
 
 // Form Popup Events
 buttonEdit.addEventListener("click", () => popupEditForm.open());

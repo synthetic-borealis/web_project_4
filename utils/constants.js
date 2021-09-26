@@ -52,6 +52,10 @@ const containerEditSelector = ".popup-section_type_edit";
 const containerAddSelector = ".popup-section_type_add";
 const containerImagePopupSelector = ".popup-section_type_image";
 
+// Labels, headings, etc.
+const profileNameSelector = ".profile__name";
+const profileJobSelector = ".profile__job";
+
 export {
   initialCards,
   formClassList,
@@ -60,4 +64,6 @@ export {
   containerEditSelector,
   containerAddSelector,
   containerImagePopupSelector,
+  profileNameSelector,
+  profileJobSelector
 };
