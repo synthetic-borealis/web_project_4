@@ -1,11 +1,15 @@
 // Imports
-import Card from "./Card.js";
-import FormValidatior from "./FormValidator.js"
-import { formClassList } from "./form-class-list.js";
-import { initialCards } from "./initial-cards.js";
+// Components
+import Card from "../components/Card.js";
+import FormValidatior from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+
+// Constants & Utilities
+import { formClassList } from "../utils/form-class-list.js";
+import { initialCards } from "../utils/initial-cards.js";
 
 // Containers
-const containerPlaces = document.querySelector(".places");
+const containerPlacesSelector = ".places";
 const containerEdit = document.querySelector(".modal-section_type_edit");
 const containerAdd = document.querySelector(".modal-section_type_add");
 const containerImageModal = document.querySelector(".modal-section_type_image");
@@ -37,6 +41,9 @@ const inputProfileName = formEdit.elements.namedItem("profile-name-input");
 const inputProfileJob = formEdit.elements.namedItem("profile-job-input");
 const inputPlaceTitle = formAdd.elements.namedItem("place-title-input");
 const inputPlaceLink = formAdd.elements.namedItem("place-link-input");
+
+// Templates
+const cardTemplateSelector = "#card-template";
 
 function openModal(modal) {
   modal.classList.add("modal-section_opened");
@@ -103,11 +110,11 @@ function openImageModal(cardData) {
   openModal(containerImageModal);
 }
 
-function renderPlaceCard(cardData) {
-  const placeCard = new Card(cardData, "#card-template", openImageModal).getCard();
-  containerPlaces.prepend(placeCard);
-}
-
+const sectionPlaces = new Section({ items: initialCards.reverse(), renderer: (item) => {
+  const placeCard = new Card(item, cardTemplateSelector, openImageModal).getCard();
+  sectionPlaces.addItem(placeCard);
+} }, containerPlacesSelector);
+sectionPlaces.renderItems();
 
 function onClickEditButton() {
   updateEditFormContent();
@@ -129,11 +136,14 @@ function onClickAddButton() {
 
 function onSubmitAddForm(evt) {
   evt.preventDefault();
-  renderPlaceCard({ name: inputPlaceTitle.value, link: inputPlaceLink.value });
+  const cardElement = new Card({
+    name: inputPlaceTitle.value,
+    link: inputPlaceLink.value },
+    cardTemplateSelector,
+    openImageModal).getCard();
+  sectionPlaces.addItem(cardElement);
   closeModal(containerAdd);
 }
-
-initialCards.reverse().forEach(renderPlaceCard);
 
 updateEditFormContent();
 enableFormValidation();
