@@ -14,7 +14,8 @@ import {
   containerAddSelector,
   containerImagePopupSelector,
   profileNameSelector,
-  profileJobSelector
+  profileJobSelector,
+  cardTemplateSelector
 } from "../utils/constants.js";
 
 // Forms
@@ -27,9 +28,6 @@ const buttonAdd = document.querySelector(".add-button");
 // Input fields
 const inputProfileName = formEdit.elements.namedItem("profile-name-input");
 const inputProfileJob = formEdit.elements.namedItem("profile-job-input");
-
-// Templates
-const cardTemplateSelector = "#card-template";
 
 // User Info
 const userInfo = new UserInfo(profileNameSelector, profileJobSelector);
