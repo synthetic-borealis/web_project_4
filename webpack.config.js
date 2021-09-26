@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+  devtool: 'inline-source-map',
   entry: {
     main: "./src/index.js", // this is the default js entry point
   },
@@ -41,7 +42,9 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
+            options: { importLoaders: 1 },
           },
+          "postcss-loader",
         ],
       },
     ],
