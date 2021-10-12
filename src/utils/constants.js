@@ -66,6 +66,9 @@ const containerImagePopupSelector = ".popup-section_type_image";
 const profileNameSelector = ".profile__name";
 const profileJobSelector = ".profile__job";
 
+// Template Selectors
+const cardTemplateSelector = "#card-template";
+
 export {
   initialCards,
   formClassList,
@@ -76,5 +79,6 @@ export {
   containerAddSelector,
   containerImagePopupSelector,
   profileNameSelector,
-  profileJobSelector
+  profileJobSelector,
+  cardTemplateSelector
 };

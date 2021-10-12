@@ -14,7 +14,8 @@ import {
   containerAddSelector,
   containerImagePopupSelector,
   profileNameSelector,
-  profileJobSelector
+  profileJobSelector,
+  cardTemplateSelector
 } from "../utils/constants.js";
 
 // Forms
@@ -28,20 +29,23 @@ const buttonAdd = document.querySelector(".add-button");
 const inputProfileName = formEdit.elements.namedItem("profile-name-input");
 const inputProfileJob = formEdit.elements.namedItem("profile-job-input");
 
-// Templates
-const cardTemplateSelector = "#card-template";
-
 // User Info
 const userInfo = new UserInfo(profileNameSelector, profileJobSelector);
 
 // Popups & Cards
+// Place Cards
+function getNewCard(cardData) {
+  const cardElement = new Card(
+    cardData,
+    cardTemplateSelector,
+    popupImage.open).getCard();
+
+    return cardElement;
+}
+
 // Image Popup
 const popupImage = new PopupWithImage(containerImagePopupSelector);
 popupImage.setEventListeners();
-
-function handleCardClick(cardData) {
-  popupImage.open(cardData);
-}
 
 // Edit Form Popup
 function updateEditFormContent(data) {
@@ -49,14 +53,13 @@ function updateEditFormContent(data) {
   inputProfileJob.value = data.job;
 }
 
-function onSubmitEditForm(inputs) {
-  console.log(inputs);
+function handleSubmitEditForm(inputs) {
   userInfo.setUserInfo(inputs);
   popupEditForm.close();
   updateEditFormContent(userInfo.getUserInfo());
 }
 
-const popupEditForm = new PopupWithForm(onSubmitEditForm, containerEditSelector);
+const popupEditForm = new PopupWithForm(handleSubmitEditForm, containerEditSelector);
 popupEditForm.setEventListeners();
 
 // Add Form Popup
@@ -66,10 +69,7 @@ function onSubmitAddForm(inputValues) {
     link: inputValues.link
   };
 
-  const cardElement = new Card(
-    cardData,
-    cardTemplateSelector,
-    handleCardClick).getCard();
+  const cardElement = getNewCard(cardData);
 
   sectionPlaces.addItem(cardElement);
   popupAddForm.close();
@@ -79,19 +79,17 @@ const popupAddForm = new PopupWithForm(onSubmitAddForm, containerAddSelector);
 popupAddForm.setEventListeners();
 
 const sectionPlaces = new Section({ items: initialCards.reverse(), renderer: (item) => {
-  const placeCard = new Card(item, cardTemplateSelector, handleCardClick).getCard();
+  const placeCard = getNewCard(item);
   sectionPlaces.addItem(placeCard);
 } }, containerPlacesSelector);
 sectionPlaces.renderItems();
 
-updateEditFormContent(userInfo.getUserInfo());
-
 // Form Popup Events
 buttonEdit.addEventListener("click", () => {
   updateEditFormContent(userInfo.getUserInfo());
+  popupEditForm.resetFormValidation();
   popupEditForm.open();
 });
 buttonAdd.addEventListener("click", () => {
-  popupAddForm.resetForm();
   popupAddForm.open();
 });
