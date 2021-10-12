@@ -4,28 +4,26 @@ class Api {
     this._headers = headers;
   }
 
+  _handleResponse(res) {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  }
+
   getUserInfo() {
-    return fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      });
+      .then(this._handleResponse);
   }
 
   getInitialCards() {
-    return fetch("https://around.nomoreparties.co/v1/group-12/cards", {
+    return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      });
+      .then(this._handleResponse);
+  }
+
+  getRemoteInfo() {
+    return Promise.all([ this.getUserInfo(), this.getInitialCards() ]);
   }
 }
 
