@@ -1,5 +1,6 @@
 // Imports
 // Components
+import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
@@ -15,8 +16,19 @@ import {
   containerImagePopupSelector,
   profileNameSelector,
   profileJobSelector,
-  cardTemplateSelector
+  cardTemplateSelector,
+  apiOptions
 } from "../utils/constants.js";
+
+// API Handler
+const api = new Api(apiOptions);
+
+// const initialCards = [];
+// api.getInitialCards()
+//   .then(res => res.forEach((item) => initialCards.push(item)))
+//   .catch(err => console.log(err));
+// console.log(initialCards);
+
 
 // Forms
 const formEdit = document.querySelector(".form_type_edit");
@@ -35,6 +47,7 @@ const userInfo = new UserInfo(profileNameSelector, profileJobSelector);
 // Popups & Cards
 // Place Cards
 function getNewCard(cardData) {
+  console.log(cardData);
   const cardElement = new Card(
     cardData,
     cardTemplateSelector,
