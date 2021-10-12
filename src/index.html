@@ -11,13 +11,15 @@
 <body class="page">
   <header class="header">
     <div class="header__container">
-      <!-- <img class="logo" src="./images/logo.svg" alt="Around the U.S."> -->
       <img class="logo" src="<%= require('./images/logo.svg')%>" alt="Around the U.S.">
     </div>
   </header>
   <main>
     <section class="profile">
-      <img class="profile__avatar" src="<%= require('./images/profile-cousteau.jpg')%>" alt="Jacques Cousteau">
+      <div class="profile__avatar-container">
+        <img class="profile__avatar" src="<%= require('./images/profile-cousteau.jpg')%>" alt="Jacques Cousteau">
+        <button class="profile__avatar-button"></button>
+      </div>
       <div class="profile__info">
         <div class="profile__header">
           <h1 class="profile__name">Jacques Cousteau</h1>
