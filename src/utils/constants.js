@@ -56,6 +56,15 @@ const cardClassList = {
   deleteButtonSelector: ".card__delete-button"
 };
 
+// API Options
+const apiOptions = {
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  headers: {
+    authorization: "d93b3a72-c2aa-468d-b021-56b5e633ed52",
+    "Content-Type": "application/json"
+  },
+};
+
 // Container Selectors
 const containerPlacesSelector = ".places";
 const containerEditSelector = ".popup-section_type_edit";
@@ -74,6 +83,7 @@ export {
   formClassList,
   popupClassList,
   cardClassList,
+  apiOptions,
   containerPlacesSelector,
   containerEditSelector,
   containerAddSelector,
