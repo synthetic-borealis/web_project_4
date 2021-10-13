@@ -33,6 +33,7 @@ api.getRemoteData()
 
     // Buttons
     const buttonEdit = document.querySelector(".profile__edit-button");
+    const buttonSaveProfile = document.querySelector("#btn-profile-save");
     const buttonAdd = document.querySelector(".add-button");
 
     // Input fields
@@ -84,9 +85,15 @@ api.getRemoteData()
     }
 
     function handleSubmitEditForm(inputs) {
-      userInfo.setUserInfo(inputs);
-      popupEditForm.close();
-      updateEditFormContent(userInfo.getUserInfo());
+      buttonSaveProfile.textContent = "Saving...";
+      api.updateUserInfo(inputs.name, inputs.job)
+        .then(() => {
+          userInfo.setUserInfo(inputs);
+          popupEditForm.close();
+          updateEditFormContent(userInfo.getUserInfo());
+        })
+        .catch(err => console.log)
+        .finally(() => buttonSaveProfile.textContent = "Save");
     }
 
     const popupEditForm = new PopupWithForm(handleSubmitEditForm, containerEditSelector);
