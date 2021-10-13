@@ -67,7 +67,10 @@ api.getRemoteData().then(([userData, initialCards]) => {
     const cardElement = new Card({
       data: cardData,
       cardSelector: cardTemplateSelector,
-      handleCardClick: popupImage.open,
+      handleCardClick: () => {
+        popupImage.updateContent(cardData);
+        popupImage.open();
+      },
       api: api,
       userId: userData._id
     }).getCard();

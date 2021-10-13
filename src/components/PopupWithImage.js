@@ -9,16 +9,11 @@ class PopupWithImage extends Popup {
     this._caption = this._container.querySelector(popupClassList.imageCaptionSelector);
   }
 
-  _updateContent(data) {
+  updateContent(data) {
     this._image.src = data.link;
     this._image.alt = data.name;
     this._caption.textContent = data.name;
   }
-
-  open = data => {
-    this._updateContent(data);
-    super.open();
-  };
 }
 
 export default PopupWithImage;
