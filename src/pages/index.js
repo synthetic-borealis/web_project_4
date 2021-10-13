@@ -5,11 +5,13 @@ import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import ConfirmPopup from "../components/ConfirmPopup.js";
 import UserInfo from "../components/UserInfo.js";
 
 // Containers
 import {
   initialCards,
+  containerConfirmSelector,
   containerPlacesSelector,
   containerEditSelector,
   containerAddSelector,
@@ -24,7 +26,7 @@ import {
 const api = new Api(apiOptions);
 
 // TODO: remove when done testing
-api.getRemoteInfo().then(console.log);
+// api.getRemoteInfo().then(console.log);
 
 // Forms
 const formEdit = document.querySelector(".form_type_edit");
@@ -41,6 +43,10 @@ const inputProfileJob = formEdit.elements.namedItem("profile-job-input");
 const userInfo = new UserInfo(profileNameSelector, profileJobSelector);
 
 // Popups & Cards
+// Confirm Popup
+const confirmPopup = new ConfirmPopup(containerConfirmSelector);
+confirmPopup.setEventListeners();
+
 // Place Cards
 function getNewCard(cardData) {
   const cardElement = new Card(

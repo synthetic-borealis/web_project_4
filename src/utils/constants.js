@@ -66,6 +66,7 @@ const apiOptions = {
 };
 
 // Container Selectors
+const containerConfirmSelector = ".popup-section_type_confirm";
 const containerPlacesSelector = ".places";
 const containerEditSelector = ".popup-section_type_edit";
 const containerAddSelector = ".popup-section_type_add";
@@ -84,6 +85,7 @@ export {
   popupClassList,
   cardClassList,
   apiOptions,
+  containerConfirmSelector,
   containerPlacesSelector,
   containerEditSelector,
   containerAddSelector,
