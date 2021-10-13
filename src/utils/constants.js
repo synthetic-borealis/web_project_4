@@ -1,31 +1,3 @@
-// Initial card list
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg"
-  }
-];
-
 // Form Classes
 const formClassList = {
   formSelector: ".form",
@@ -53,32 +25,48 @@ const cardClassList = {
   captionSelector: ".card__caption",
   likeButtonSelector: ".card__like-button",
   activeLikeButtonClass: "card__like-button_active",
+  likeCounterSelector: ".card__like-counter",
   deleteButtonSelector: ".card__delete-button"
 };
 
+// API Options
+const apiOptions = {
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  headers: {
+    authorization: "d93b3a72-c2aa-468d-b021-56b5e633ed52",
+    "Content-Type": "application/json"
+  },
+};
+
 // Container Selectors
+const containerConfirmSelector = ".popup-section_type_confirm";
 const containerPlacesSelector = ".places";
 const containerEditSelector = ".popup-section_type_edit";
 const containerAddSelector = ".popup-section_type_add";
+const containerChangeAvatarSelector = ".popup-section_type_change-avatar";
 const containerImagePopupSelector = ".popup-section_type_image";
 
 // Labels, headings, etc.
 const profileNameSelector = ".profile__name";
 const profileJobSelector = ".profile__job";
+const profileAvatarSelector = ".profile__avatar";
 
 // Template Selectors
 const cardTemplateSelector = "#card-template";
 
 export {
-  initialCards,
   formClassList,
   popupClassList,
   cardClassList,
+  apiOptions,
+  containerConfirmSelector,
   containerPlacesSelector,
   containerEditSelector,
   containerAddSelector,
+  containerChangeAvatarSelector,
   containerImagePopupSelector,
   profileNameSelector,
   profileJobSelector,
+  profileAvatarSelector,
   cardTemplateSelector
 };

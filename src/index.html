@@ -11,13 +11,15 @@
 <body class="page">
   <header class="header">
     <div class="header__container">
-      <!-- <img class="logo" src="./images/logo.svg" alt="Around the U.S."> -->
       <img class="logo" src="<%= require('./images/logo.svg')%>" alt="Around the U.S.">
     </div>
   </header>
   <main>
     <section class="profile">
-      <img class="profile__avatar" src="<%= require('./images/profile-cousteau.jpg')%>" alt="Jacques Cousteau">
+      <div class="profile__avatar-container">
+        <div class="profile__avatar"></div>
+        <button class="profile__avatar-button" id="btn-change-avatar"></button>
+      </div>
       <div class="profile__info">
         <div class="profile__header">
           <h1 class="profile__name">Jacques Cousteau</h1>
@@ -52,7 +54,7 @@
             <span class="form__error profile-job-input-error">Here be error message.</span>
           </label>
         </fieldset>
-        <button type="submit" class="form__submit-btn">Save</button>
+        <button type="submit" class="form__submit-btn" id="btn-profile-save">Save</button>
       </form>
       <button class="close-button" type="button" aria-label="Close"></button>
     </div>
@@ -74,8 +76,35 @@
             <span class="form__error place-link-input-error">Here be error message.</span>
           </label>
         </fieldset>
-        <button type="submit" class="form__submit-btn">Create</button>
+        <button type="submit" class="form__submit-btn" id="btn-add-submit">Create</button>
       </form>
+      <button class="close-button" type="button" aria-label="Close"></button>
+    </div>
+  </section>
+
+  <section class="popup-section popup-section_type_change-avatar">
+    <div class="form-popup form-popup_type_avatar">
+      <form id="avatar-form" class="form form_type_avatar" action="#" autocomplete="off" name="changeAvatarForm" novalidate>
+        <fieldset class="form__fieldset">
+          <h2 class="form__title">Change profile picture</h2>
+          <label class="form__field">
+            <input id="profile-avatar-input" type="url" placeholder="Image Link" name="avatar" required
+              class="form__input form__input_type_avatar-link">
+            <span class="form__error profile-avatar-input-error">Here be error message.</span>
+          </label>
+        </fieldset>
+        <button type="submit" class="form__submit-btn form__submit-btn_type_avatar" id="btn-save-avatar">Save</button>
+      </form>
+      <button class="close-button" type="button" aria-label="Close"></button>
+    </div>
+  </section>
+
+  <section class="popup-section popup-section_type_confirm">
+    <div class="form-popup">
+      <div class="form">
+        <h2 class="form__title form__title_gap-size_small">Are you sure?</h2>
+        <button class="form__submit-btn">Yes</button>
+      </div>
       <button class="close-button" type="button" aria-label="Close"></button>
     </div>
   </section>
@@ -93,7 +122,10 @@
       <button class="card__image" aria-label=""></button>
       <div class="card__container">
         <h2 class="card__caption"></h2>
-        <button class="card__like-button" type="button" aria-label="Like"></button>
+        <div class="card__like-container">
+          <button class="card__like-button" type="button" aria-label="Like"></button>
+          <p class="card__like-counter">0</p>
+        </div>
       </div>
       <button class="card__delete-button" type="button" aria-label="Delete"></button>
     </article>
