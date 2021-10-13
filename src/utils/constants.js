@@ -25,6 +25,7 @@ const cardClassList = {
   captionSelector: ".card__caption",
   likeButtonSelector: ".card__like-button",
   activeLikeButtonClass: "card__like-button_active",
+  likeCounterSelector: ".card__like-counter",
   deleteButtonSelector: ".card__delete-button"
 };
 
