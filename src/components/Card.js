@@ -1,11 +1,13 @@
 import { cardClassList } from "../utils/constants.js";
 
 class Card {
-  constructor(data, cardSelector, handleCardClick) {
+  constructor({data, cardSelector, handleCardClick, confirmPopup, api}) {
     this._name = data.name;
     this._imageLink = data.link;
+    this._id = data["_id"];
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._confirmPopup = confirmPopup;
   }
 
   _onClickLikeButton(evt) {
