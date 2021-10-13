@@ -69,6 +69,7 @@ api.getRemoteData().then(([userData, initialCards]) => {
       cardSelector: cardTemplateSelector,
       handleCardClick: popupImage.open,
       api: api,
+      userId: userData._id
     }).getCard();
 
     return cardElement;
