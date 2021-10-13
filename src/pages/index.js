@@ -36,6 +36,7 @@ api.getRemoteData().then(([userData, initialCards]) => {
   const buttonChangeAvatar = document.querySelector("#btn-change-avatar");
   const buttonSaveAvatar = document.querySelector("#btn-save-avatar");
   const buttonAdd = document.querySelector(".add-button");
+  const buttonAddSubmit = document.querySelector("#btn-add-submit");
 
   // Input fields
   const inputProfileName = formEdit.elements.namedItem("profile-name-input");
@@ -67,9 +68,13 @@ api.getRemoteData().then(([userData, initialCards]) => {
     const cardElement = new Card({
       data: cardData,
       cardSelector: cardTemplateSelector,
-      handleCardClick: popupImage.open,
+      handleCardClick: () => {
+        popupImage.updateContent(cardData);
+        popupImage.open();
+      },
       api: api,
-      userId: userData._id
+      userId: userData._id,
+      confirmPopup: confirmPopup
     }).getCard();
 
     return cardElement;
@@ -93,7 +98,7 @@ api.getRemoteData().then(([userData, initialCards]) => {
         userInfo.setUserInfo(inputs);
         updateEditFormContent(userInfo.getUserInfo());
       })
-      .catch((err) => console.log)
+      .catch(console.log)
       .finally(() => {
         buttonSaveProfile.textContent = "Save";
         popupEditForm.close();
@@ -108,15 +113,17 @@ api.getRemoteData().then(([userData, initialCards]) => {
 
   // Add Form Popup
   function onSubmitAddForm(inputValues) {
-    const cardData = {
-      name: inputValues.title,
-      link: inputValues.link,
-    };
-
-    const cardElement = getNewCard(cardData);
-
-    sectionPlaces.addItem(cardElement);
-    popupAddForm.close();
+    buttonAddSubmit.textContent = "Creating...";
+    api.addCard(inputValues.title, inputValues.link)
+    .then((cardData) => {
+      const cardElement = getNewCard(cardData);
+      sectionPlaces.addItem(cardElement);
+    })
+    .catch(console.log)
+    .finally(() => {
+      buttonAddSubmit.textContent = "Create";
+      popupAddForm.close();
+      });
   }
 
   const popupAddForm = new PopupWithForm(onSubmitAddForm, containerAddSelector);
@@ -131,7 +138,7 @@ api.getRemoteData().then(([userData, initialCards]) => {
       .then(() => {
         setAvatar(avatar);
       })
-      .catch((err) => console.log)
+      .catch(console.log)
       .finally(() => {
         buttonSaveAvatar.textContent = "Save";
         popupChangeAvatarForm.close();
@@ -164,4 +171,5 @@ api.getRemoteData().then(([userData, initialCards]) => {
   });
   buttonAdd.addEventListener("click", popupAddForm.open);
   buttonChangeAvatar.addEventListener("click", popupChangeAvatarForm.open);
-});
+})
+.catch(console.log);

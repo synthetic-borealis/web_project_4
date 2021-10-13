@@ -42,22 +42,29 @@ class Card {
           this._likes++;
           this.updateLikeCounter();
         })
-        .catch(err => console.log);
+        .catch(console.log);
     }
   };
 
-  _onClickDeleteButton(evt) {
-    evt.target.closest(cardClassList.cardSelector).remove();
-  }
+  _onClickDeleteButton = (evt) => {
+    this._confirmPopup.setActionCallback(() => {
+      this._api.removeCard(this._id)
+        .then(() => {
+          evt.target.closest(cardClassList.cardSelector).remove();
+        })
+        .catch(console.log);
+    });
+    this._confirmPopup.open();
+  };
 
-  _onClickImage() {
+  _onClickImage = () => {
     this._handleCardClick({name: this._name, link: this._imageLink});
-  }
+  };
 
   _setEventListeners() {
     this._buttonLike.addEventListener("click", this._onClickLikeButton);
     this._buttonDelete.addEventListener("click", this._onClickDeleteButton);
-    this._image.addEventListener("click", (evt) => this._onClickImage(evt));
+    this._image.addEventListener("click", this._onClickImage);
   }
 
   _getCardTemplate() {
