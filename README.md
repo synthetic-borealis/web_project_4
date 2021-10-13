@@ -1,4 +1,4 @@
-# Project 8: Around The U.S.
+# Project 9: Around The U.S.
 
 ## Description
 A one page website for travellers. The website is responsive and should display well on different devices and resolutions (including PCs, tablets & mobile phones).
