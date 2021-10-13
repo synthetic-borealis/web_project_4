@@ -46,9 +46,13 @@ class Card {
     }
   };
 
-  _onClickDeleteButton(evt) {
-    evt.target.closest(cardClassList.cardSelector).remove();
-  }
+  _onClickDeleteButton = (evt) => {
+    this._api.removeCard(this._id)
+      .then(() => {
+        evt.target.closest(cardClassList.cardSelector).remove();
+      })
+      .catch(console.log);
+  };
 
   _onClickImage() {
     this._handleCardClick({name: this._name, link: this._imageLink});

@@ -96,7 +96,7 @@ api.getRemoteData().then(([userData, initialCards]) => {
         userInfo.setUserInfo(inputs);
         updateEditFormContent(userInfo.getUserInfo());
       })
-      .catch((err) => console.log)
+      .catch(console.log)
       .finally(() => {
         buttonSaveProfile.textContent = "Save";
         popupEditForm.close();
@@ -115,11 +115,16 @@ api.getRemoteData().then(([userData, initialCards]) => {
       name: inputValues.title,
       link: inputValues.link,
     };
+    api.addCard(inputValues.title, inputValues.link)
+      .then((cardData) => {
+        const cardElement = getNewCard(cardData);
+        sectionPlaces.addItem(cardElement);
+      })
+      .catch(console.log)
+      .finally(() => {
+        popupAddForm.close();
+      });
 
-    const cardElement = getNewCard(cardData);
-
-    sectionPlaces.addItem(cardElement);
-    popupAddForm.close();
   }
 
   const popupAddForm = new PopupWithForm(onSubmitAddForm, containerAddSelector);
@@ -167,4 +172,5 @@ api.getRemoteData().then(([userData, initialCards]) => {
   });
   buttonAdd.addEventListener("click", popupAddForm.open);
   buttonChangeAvatar.addEventListener("click", popupChangeAvatarForm.open);
-});
+})
+.catch(console.log);
