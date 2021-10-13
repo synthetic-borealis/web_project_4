@@ -26,7 +26,7 @@ import {
 const api = new Api(apiOptions);
 
 // TODO: remove when done testing
-// api.getRemoteInfo().then(console.log);
+// api.getRemoteData().then(console.log);
 
 // Forms
 const formEdit = document.querySelector(".form_type_edit");

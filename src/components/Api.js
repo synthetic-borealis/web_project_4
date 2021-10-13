@@ -8,9 +8,32 @@ class Api {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   }
 
-  getUserInfo() {
+  getUserData() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
+    })
+      .then(this._handleResponse);
+  }
+
+  updateUserInfo(userName, userAbout) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: userName,
+        about: userAbout
+      })
+    })
+      .then(this._handleResponse);
+  }
+
+  updateUserAvatar(avatarLink) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: avatarLink
+      })
     })
       .then(this._handleResponse);
   }
@@ -22,8 +45,8 @@ class Api {
       .then(this._handleResponse);
   }
 
-  getRemoteInfo() {
-    return Promise.all([ this.getUserInfo(), this.getInitialCards() ]);
+  getRemoteData() {
+    return Promise.all([ this.getUserData(), this.getInitialCards() ]);
   }
 }
 
