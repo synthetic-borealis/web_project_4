@@ -22,15 +22,15 @@ class Popup {
     }
   }
 
-  open() {
+  open = () => {
     document.addEventListener("keydown", this._handleEscClose);
     this._container.classList.add(popupClassList.openedPopup);
-  }
+  };
 
-  close() {
+  close = () => {
     document.removeEventListener("keydown", this._handleEscClose);
     this._container.classList.remove(popupClassList.openedPopup);
-  }
+  };
 
   setEventListeners() {
     this._container.addEventListener("click", this._handlePopupClick);

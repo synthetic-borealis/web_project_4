@@ -42,6 +42,7 @@ const containerConfirmSelector = ".popup-section_type_confirm";
 const containerPlacesSelector = ".places";
 const containerEditSelector = ".popup-section_type_edit";
 const containerAddSelector = ".popup-section_type_add";
+const containerChangeAvatarSelector = ".popup-section_type_change-avatar";
 const containerImagePopupSelector = ".popup-section_type_image";
 
 // Labels, headings, etc.
@@ -61,6 +62,7 @@ export {
   containerPlacesSelector,
   containerEditSelector,
   containerAddSelector,
+  containerChangeAvatarSelector,
   containerImagePopupSelector,
   profileNameSelector,
   profileJobSelector,

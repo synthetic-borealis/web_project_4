@@ -18,7 +18,7 @@
     <section class="profile">
       <div class="profile__avatar-container">
         <div class="profile__avatar"></div>
-        <button class="profile__avatar-button"></button>
+        <button class="profile__avatar-button" id="btn-change-avatar"></button>
       </div>
       <div class="profile__info">
         <div class="profile__header">
@@ -77,6 +77,23 @@
           </label>
         </fieldset>
         <button type="submit" class="form__submit-btn">Create</button>
+      </form>
+      <button class="close-button" type="button" aria-label="Close"></button>
+    </div>
+  </section>
+
+  <section class="popup-section popup-section_type_change-avatar">
+    <div class="form-popup form-popup_type_avatar">
+      <form id="avatar-form" class="form form_type_avatar" action="#" autocomplete="off" name="changeAvatarForm" novalidate>
+        <fieldset class="form__fieldset">
+          <h2 class="form__title">Change profile picture</h2>
+          <label class="form__field">
+            <input id="profile-avatar-input" type="url" placeholder="Image Link" name="avatar" required
+              class="form__input form__input_type_avatar-link">
+            <span class="form__error profile-avatar-input-error">Here be error message.</span>
+          </label>
+        </fieldset>
+        <button type="submit" class="form__submit-btn form__submit-btn_type_avatar" id="btn-save-avatar">Save</button>
       </form>
       <button class="close-button" type="button" aria-label="Close"></button>
     </div>
