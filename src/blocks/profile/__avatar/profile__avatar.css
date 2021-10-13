@@ -1,14 +1,13 @@
 .profile__avatar {
   position: relative;
-  max-width: 120px;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  display: block;
+  width: 120px;
+  padding-top: 100%;
+  background-image: url("../../../images/profile-cousteau.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   border-radius: 100%;
-}
-
-@media screen and (max-width: 1044px) {
-  .profile__avatar {
-    width: calc(120 / 282 * 100%);
-  }
+  background-color: red;
+  content: "";
 }

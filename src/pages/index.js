@@ -44,14 +44,15 @@ api.getRemoteData()
 
     function setAvatar(avatarLink) {
       profileAvatar.src = avatarLink;
-      profileAvatar.alt = userData.name;
+      profileAvatar.style.backgroundImage = `url(${avatarLink})`;
+      profileAvatar.ariaLabel = userData.name;
     }
     setAvatar(userData.avatar);
 
     const userInfo = new UserInfo(profileNameSelector, profileJobSelector);
     userInfo.setUserInfo({
       name: userData.name,
-      job: userData.job
+      job: userData.about
     });
 
     // Popups & Cards
