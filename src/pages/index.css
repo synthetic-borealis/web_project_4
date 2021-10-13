@@ -19,6 +19,7 @@
 @import url("../blocks/form/__input/form__input.css");
 @import url("../blocks/form/__input/_type/form__input_type_error.css");
 @import url("../blocks/form/__submit-btn/form__submit-btn.css");
+@import url("../blocks/form/__submit-btn/_type/form__submit-btn_type_avatar.css");
 @import url("../blocks/form/__submit-btn/_disabled/form__submit-btn_disabled.css");
 @import url("../blocks/close-button/close-button.css");
 @import url("../blocks/close-button/_type/close-button_type_image-popup.css");

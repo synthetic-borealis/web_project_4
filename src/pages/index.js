@@ -14,6 +14,7 @@ import {
   containerPlacesSelector,
   containerEditSelector,
   containerAddSelector,
+  containerChangeAvatarSelector,
   containerImagePopupSelector,
   profileNameSelector,
   profileJobSelector,
@@ -34,6 +35,8 @@ api.getRemoteData()
     // Buttons
     const buttonEdit = document.querySelector(".profile__edit-button");
     const buttonSaveProfile = document.querySelector("#btn-profile-save");
+    const buttonChangeAvatar = document.querySelector("#btn-change-avatar");
+    const buttonSaveAvatar = document.querySelector("#btn-save-avatar");
     const buttonAdd = document.querySelector(".add-button");
 
     // Input fields
@@ -63,7 +66,6 @@ api.getRemoteData()
 
     // Place Cards
     function getNewCard(cardData) {
-      // {data, cardSelector, handleCardClick, confirmPopup}
       const cardElement = new Card({
         data: cardData,
         cardSelector: cardTemplateSelector,
@@ -89,11 +91,13 @@ api.getRemoteData()
       api.updateUserInfo(inputs.name, inputs.job)
         .then(() => {
           userInfo.setUserInfo(inputs);
-          popupEditForm.close();
           updateEditFormContent(userInfo.getUserInfo());
         })
         .catch(err => console.log)
-        .finally(() => buttonSaveProfile.textContent = "Save");
+        .finally(() => {
+          buttonSaveProfile.textContent = "Save";
+          popupEditForm.close();
+        });
     }
 
     const popupEditForm = new PopupWithForm(handleSubmitEditForm, containerEditSelector);
@@ -115,6 +119,24 @@ api.getRemoteData()
     const popupAddForm = new PopupWithForm(onSubmitAddForm, containerAddSelector);
     popupAddForm.setEventListeners();
 
+    // Change Avatar (Profile Picture) Popup
+    function onSubmitChangeAvatar(inputs) {
+      console.log(inputs);
+      buttonSaveAvatar.textContent = "Saving...";
+      api.updateUserAvatar(inputs.avatar)
+      .then(() => {
+        setAvatar(avatar);
+      })
+      .catch(err => console.log)
+      .finally(() => {
+          buttonSaveAvatar.textContent = "Save";
+          popupChangeAvatarForm.close();
+        });
+    }
+    const popupChangeAvatarForm = new PopupWithForm(onSubmitChangeAvatar, containerChangeAvatarSelector);
+    popupChangeAvatarForm.setEventListeners();
+
+    // Places Section
     const sectionPlaces = new Section({ items: initialCards.reverse(), renderer: (item) => {
       const placeCard = getNewCard(item);
       sectionPlaces.addItem(placeCard);
@@ -127,7 +149,6 @@ api.getRemoteData()
       popupEditForm.resetFormValidation();
       popupEditForm.open();
     });
-    buttonAdd.addEventListener("click", () => {
-      popupAddForm.open();
-    });
+    buttonAdd.addEventListener("click", popupAddForm.open);
+    buttonChangeAvatar.addEventListener("click", popupChangeAvatarForm.open);
   });
