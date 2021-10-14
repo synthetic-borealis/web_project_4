@@ -11,13 +11,7 @@ class Card {
     this._confirmPopup = confirmPopup;
     this._api = api;
 
-    this._isLiked = false;
-    for (let i = 0; i < data.likes.length; ++i) {
-      if (data.likes[i]._id === userId) {
-        this._isLiked = true;
-        break;
-      }
-    }
+    this._isLiked = data.likes.some((like) => like._id === userId);
   }
 
   updateLikeCounter = () => {
