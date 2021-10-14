@@ -5,7 +5,7 @@ A one page website for travellers. The website is responsive and should display 
 
 The website was created in HTML5, CSS & JavaScript, and bundled with WebPack.
 
-Click [here](https://synthetic-borealis.github.io/web_project_4/) an unbundled version of the site.
+Click [here](https://synthetic-borealis.github.io/web_project_4/) to visit the site.
 
 ## Possible Improvements
 - Ensure url inputs don't accept non-https (or http) as valid input (perhaps with the pattern attribute).
